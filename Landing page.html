@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>PathAI - Accelerate Your Job Search</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Webflow" name="generator"/>
+  <link href="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/css/pathai-e862ac.webflow.shared.e24108e70.css" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Inter:regular"] } });
+    !function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);
+  </script>
+  <link href="https://cdn.prod.website-files.com/img/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="https://cdn.prod.website-files.com/img/webclip.png" rel="apple-touch-icon"/>
+  <style>
+    /* Custom styles can be added here if needed */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+    }
+
+    /* Responsive image optimization */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav">
+    <div data-duration="400" data-animation="default" data-easing2="ease" data-easing="ease" data-collapse="medium" role="banner" data-no-scroll="1" class="nav_container w-nav">
+      <div class="nav_left">
+        <a href="Landing page.html" class="nav_logo w-inline-block">
+          <div class="nav_logo-icon">
+            <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+              <path d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <div data-brand-name="true" class="paragraph_large margin-bottom_none">PathAI</div>
+        </a>
+        <nav role="navigation" class="nav_menu w-nav-menu">
+          <ul role="list" class="nav_menu-list w-list-unstyled">
+            <li class="nav_menu-list-item">
+              <div data-delay="0" data-hover="false" class="nav_dropdown-menu w-dropdown">
+                <div class="nav_link w-dropdown-toggle">
+                  <div>Solutions</div>
+                  <div class="nav-caret w-icon-dropdown-toggle"></div>
+                </div>
+                <nav class="mega-nav_dropdown-list w-dropdown-list">
+                  <div class="mega-nav_dropdown-list-wrapper">
+                    <div class="w-layout-grid grid_4-col tablet-2-col mobile-1-col gap-medium margin-bottom_none">
+                      <!-- For Candidates Column -->
+                      <div>
+                        <div class="eyebrow">For candidates</div>
+                        <ul role="list" class="mega-nav_list w-list-unstyled">
+                          <li class="margin-bottom_none">
+                            <a href="Job search.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Job search</strong>
+                                <div class="paragraph_small text-color_secondary">Filter jobs by skill, location, type.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="profile builder.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Profile builder</strong>
+                                <div class="paragraph_small text-color_secondary">Edit your resume and key details.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="Application Status.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Application status</strong>
+                                <div class="paragraph_small text-color_secondary">Monitor your application progress.</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <!-- For Employers Column -->
+                      <div>
+                        <div class="eyebrow">For employers</div>
+                        <ul role="list" class="mega-nav_list w-list-unstyled">
+                          <li class="margin-bottom_none">
+                            <a href="post a job.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Post a job</strong>
+                                <div class="paragraph_small text-color_secondary">List open roles and manage postings.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="Candidate inbox.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Candidate inbox</strong>
+                                <div class="paragraph_small text-color_secondary">Sort, rate, and review applicants.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="pipeline.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Pipeline stages</strong>
+                                <div class="paragraph_small text-color_secondary">Advance candidates through each stage.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="ai candidate ranking.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="M12 2L2 7V12L12 17L22 12V7L12 2Z M12 17L2 22V27L12 32L22 27V22L12 17Z" stroke-linejoin="round" stroke-width="1.5" fill="none" stroke="currentColor"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>AI Candidate Ranking</strong>
+                                <div class="paragraph_small text-color_secondary">Auto-rank candidates with AI-powered scoring.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="firecrawl-scraper.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2zm0 26C9.37 28 4 22.63 4 16S9.37 4 16 4s12 5.37 12 12-5.37 12-12 12zm3.5-9h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Scrape Jobs</strong>
+                                <div class="paragraph_small text-color_secondary">Import jobs from websites automatically.</div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <!-- Resources Column -->
+                      <div>
+                        <div class="eyebrow">Resources</div>
+                        <ul role="list" class="mega-nav_list w-list-unstyled">
+                          <li class="margin-bottom_none">
+                            <a href="resume parsing.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Resume parsing</strong>
+                                <div class="paragraph_small text-color_secondary">Extract structured data from resumes.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="skill gap analysis.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Skill gap analysis</strong>
+                                <div class="paragraph_small text-color_secondary">Spot missing skills for each role.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="Learning.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="m25.7 9.3l-7-7A.9.9 0 0 0 18 2H8a2.006 2.006 0 0 0-2 2v24a2.006 2.006 0 0 0 2 2h16a2.006 2.006 0 0 0 2-2V10a.9.9 0 0 0-.3-.7M18 4.4l5.6 5.6H18ZM24 28H8V4h8v6a2.006 2.006 0 0 0 2 2h6Z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Learning paths</strong>
+                                <div class="paragraph_small text-color_secondary">Get upskilling course suggestions.</div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="margin-bottom_none">
+                            <a href="firecrawl-scraper.html" class="mega-nav_link-item w-inline-block">
+                              <div class="icon is-medium">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32" fill="currentColor">
+                                  <path d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2zm0 26C9.37 28 4 22.63 4 16S9.37 4 16 4s12 5.37 12 12-5.37 12-12 12zm3.5-9h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3z" stroke-linejoin="round"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <strong>Scrape Jobs</strong>
+                                <div class="paragraph_small text-color_secondary">Import job listings automatically.</div>
+                              </div>
+                            </a>
+                          </li>
+
+                      <!-- Featured Card Column -->
+                      <div>
+                        <a href="Landing page.html#solutions" class="card-link is-inverse flex-child_expand w-inline-block" style="height: 100%;">
+                          <div class="card_body" style="background: #000; color: white; height: 100%; display: flex; flex-direction: column; justify-content: space-between; border-radius: 12px; padding: 32px;">
+                            <div>
+                              <div class="heading_h3" style="color: white; margin-bottom: 16px;">Smarter hiring, seamless applications</div>
+                              <p style="color: rgba(255, 255, 255, 0.8); font-size: 14px; line-height: 1.6;">Essential tools for candidates and employers: fast search, secure profiles, real-time tracking, and actionable analytics.</p>
+                            </div>
+                            <div style="margin-top: 24px;">
+                              <div class="button-group">
+                                <div class="text-button is-secondary" style="color: white;">
+                                  <div>Learn more</div>
+                                  <div class="button_icon" style="margin-left: 8px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                      <path d="M2 8H14.5M14.5 8L8.5 2M14.5 8L8.5 14" stroke="white" stroke-width="2" stroke-linejoin="round"></path>
+                                    </svg>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </li>
+            <li class="nav_menu-list-item">
+              <li class="nav_menu-list-item">
+                <a href="about.html" class="nav_link w-inline-block">
+                  <div>About</div>
+                </a>
+              </li>
+              <li class="nav_menu-list-item">
+                <a href="blog.html" class="nav_link w-inline-block">
+                  <div>Blog</div>
+                </a>
+            </li>
+            <li class="nav_menu-list-item">
+              <div data-delay="0" data-hover="false" class="nav_dropdown-menu w-dropdown">
+                <div class="nav_link w-dropdown-toggle">
+                  <div>Support</div>
+                  <div class="nav-caret w-icon-dropdown-toggle"></div>
+                </div>
+                <div class="nav_dropdown-list w-dropdown-list">
+                  <div class="nav-menu_dropdown-list-wrapper">
+                    <ul role="list" class="flex_vertical margin-bottom_none w-list-unstyled">
+                      <li class="margin-bottom_none">
+                        <a href="help-center.html" class="nav_dropdown-link w-inline-block">
+                          <div class="button_label">Help center</div>
+                        </a>
+                      </li>
+                      <li class="margin-bottom_none">
+                        <a href="contact.html" class="nav_dropdown-link w-inline-block">
+                          <div class="button_label">Contact</div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="nav_right">
+        <div class="button-group margin-top_none">
+          <a href="signup.html" class="button w-inline-block">
+            <div class="button_label">Sign up</div>
+          </a>
+        </div>
+      </div>
+      <div class="nav_mobile-menu-button w-nav-button">
+        <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g class="nc-icon-wrapper" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" fill="none" stroke="currentColor" stroke-miterlimit="10">
+              <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor"></line>
+              <line x1="1" y1="5" x2="23" y2="5"></line>
+              <line x1="1" y1="19" x2="23" y2="19"></line>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="section overflow_clip">
+    <div class="container">
+      <div class="w-layout-grid grid_2-col tablet-1-col gap-large">
+        <div class="header">
+          <h1 class="heading_h1">Accelerate your job search</h1>
+          <p class="subheading">Upload your resume, edit your profile, and match instantly with roles that fit your skills. Filter jobs, apply in one click, and track every application—efficient, secure, and built for your next career move.</p>
+          <div class="button-group">
+            <a href="signup.html" class="button w-button">Sign up</a>
+            <a href="Job search.html" class="button is-secondary w-button">Find jobs</a>
+          </div>
+        </div>
+        <div class="position_relative flex_horizontal">
+          <div class="grid_9-col position_relative z-index_2">
+            <div class="image-ratio_4x3">
+              <img width="450" height="338" alt="Team discussion" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b885c7e8e7a714f10d_e2f9fd11-f469-4858-99cb-94861c08934f.avif" loading="lazy" class="image image_cover"/>
+            </div>
+            <div class="image-ratio_1x1 z-index_2">
+              <img width="75" height="75" alt="High-tech control room" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8a2fbd71546ecea6b_86c4e483-5d43-4845-8200-5e5c64f00b7d.avif" loading="lazy" class="image image_cover shadow_xlarge"/>
+            </div>
+            <div class="image-ratio_3x2">
+              <img width="300" height="200" alt="HR software interface" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8aded6ee9acc0b19c_5bc04055-1f80-404e-99b4-aed94e1f5ccf.avif" loading="lazy" class="image image_cover shadow_xlarge"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Company Logos Section -->
+  <section class="section">
+    <div class="container">
+      <div class="flex_horizontal is-wrap gap-medium is-x-center">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 54 16" fill="none">
+            <path d="M19.4,5.4h1.3v5.1h4v1.1h-5.3v-6.2ZM25,8.5c0-1.8,1.3-3.2,4-3.2s4,1.4,4,3.2-1.2,3.2-4,3.2-4-1.3-4-3.2ZM31.7,8.5c0-1.2-.9-2.2-2.7-2.2s-2.7,1-2.7,2.2.9,2.2,2.7,2.2,2.7-1,2.7-2.2ZM33.8,8.6c0-1.8,1.3-3.3,3.9-3.3s3.5,1.2,3.5,2.3,0,0,0,.2h-1.2c0,0,0,0,0-.1,0-.6-.6-1.4-2.3-1.4s-2.6,1-2.6,2.3.8,2.2,2.6,2.2,2.2-.8,2.2-1.4h0s-2.5,0-2.5,0v-.8h3.8v3.1h-1.1c0-.2,0-.8,0-1.3h0c-.3.9-1.2,1.4-2.6,1.4-2.7,0-3.7-1.5-3.7-3.1ZM42.2,8.5c0-1.8,1.3-3.2,4-3.2s4,1.4,4,3.2-1.2,3.2-4,3.2-4-1.3-4-3.2ZM48.8,8.5c0-1.2-.9-2.2-2.7-2.2s-2.7,1-2.7,2.2.9,2.2,2.7,2.2,2.7-1,2.7-2.2ZM16.3,8.5c0,1.2-.3,2.2-.8,3.1-.5.9-1.3,1.6-2.3,2.1-1,.5-2.2.8-3.6.8s-2.5-.2-3.5-.7c-1-.5-1.8-1.2-2.4-2.1s-.9-1.9-.9-3.2.3-2.2.8-3.1c.5-.9,1.3-1.6,2.3-2.1,1-.5,2.2-.8,3.6-.8s2.5.2,3.5.7c1,.5,1.8,1.2,2.4,2.1s.9,1.9.9,3.2ZM15,8.5c0-1-.2-1.8-.6-2.5-.4-.7-1-1.3-1.9-1.7-.8-.4-1.8-.6-2.9-.6s-2,.2-2.8.6c-.8.4-1.4.9-1.9,1.6-.4.7-.7,1.6-.7,2.6s.2,1.8.6,2.5c.4.7,1,1.3,1.9,1.7.8.4,1.8.6,2.9.6s2-.2,2.8-.6,1.4-.9,1.9-1.6c.4-.7.7-1.6.7-2.6ZM13,9.5c-.1.8-.5,1.3-1.1,1.7s-1.3.6-2.2.6-1.9-.3-2.6-.9c-.6-.6-1-1.4-1-2.4s.1-1.2.4-1.7c.3-.5.7-.9,1.2-1.2.5-.3,1.2-.4,1.9-.4,1.7,0,2.7.7,3.1,2.1l-1.4.2c-.1-.4-.4-.7-.6-.9s-.7-.3-1.2-.3-1.2.2-1.6.6c-.4.4-.6.9-.6,1.6s.2,1.3.5,1.6c.4.4.9.6,1.6.6s1,0,1.3-.3c.3-.2.5-.5.6-.9h1.4Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 54 16" fill="none">
+            <path d="M17.4,5.4h5.8v1h-4.5v1.6h3.5v.8h-3.5v1.8h4.5v1h-5.8v-6.2ZM23.8,8.6c0-1.8,1.3-3.3,3.9-3.3s3.5,1.2,3.5,2.3,0,0,0,.2h-1.2c0,0,0,0,0-.1,0-.6-.6-1.4-2.3-1.4s-2.6,1-2.6,2.3.8,2.2,2.6,2.2,2.2-.8,2.2-1.4h0s-2.5,0-2.5,0v-.8h3.8v3.1h-1.1c0-.2,0-.8,0-1.3h0c-.3.9-1.2,1.4-2.6,1.4-2.7,0-3.7-1.5-3.7-3.1ZM32.1,8.6c0-1.8,1.3-3.3,3.9-3.3s3.5,1.2,3.5,2.3,0,0,0,.2h-1.2c0,0,0,0,0-.1,0-.6-.6-1.4-2.3-1.4s-2.6,1-2.6,2.3.8,2.2,2.6,2.2,2.2-.8,2.2-1.4h0s-2.5,0-2.5,0v-.8h3.8v3.1h-1.1c0-.2,0-.8,0-1.3h0c-.3.9-1.2,1.4-2.6,1.4-2.7,0-3.7-1.5-3.7-3.1ZM40.5,9.5h1.2c0,.6.3,1.2,1.7,1.2s1.7-.5,1.7-1-.2-.6-.5-.7c-.3-.1-1-.2-1.6-.3-.7,0-1.4-.2-1.7-.5-.4-.3-.7-.7-.7-1.3,0-1.2,1-2,2.8-2s2.7.9,2.7,2.4h-1.1c0-1-.5-1.4-1.6-1.4s-1.6.4-1.6,1,.1.6.4.7c.3.1,1,.3,1.6.3.7.1,1.3.2,1.7.4.5.2.7.7.7,1.3,0,1.1-.6,2.1-2.9,2.1s-2.8-1.2-2.8-2.4ZM9.9,6.2h-5c-.7,0-1.2-.5-1.2-1.2s.5-1.2,1.2-1.2h1.3v-1.2h-1.3c-1.3,0-2.4,1.1-2.4,2.4s1.1,2.4,2.4,2.4h5v-1.2ZM10,11.1c0-1.3-1.1-2.4-2.4-2.4H2.6v1.2h5c.7,0,1.2.5,1.2,1.2s-.5,1.2-1.2,1.2h-1.3v1.2h1.3c1.3,0,2.4-1.1,2.4-2.4Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 54 16" fill="none">
+            <path d="M24.4,5.4h2.6c1.5,0,2.4.8,2.4,2.2s-.8,2.1-2.3,2.1h-1.6v1.9h-1.1v-6.2ZM27,8.9c.8,0,1.3-.4,1.3-1.3s-.5-1.3-1.4-1.3h-1.4v2.5h1.5ZM33.8,10.2h-2.9l-.5,1.4h-1.2l2.5-6.2h1.4l2.5,6.2h-1.3l-.5-1.4ZM33.5,9.4l-1.1-3.1h0l-1.2,3.1h2.3ZM40.6,10.2h-2.9l-.5,1.4h-1.2l2.5-6.2h1.4l2.5,6.2h-1.3l-.5-1.4ZM40.3,9.4l-1.1-3.1h0l-1.2,3.1h2.3ZM43.3,5.4h1.1v3.4h0l3.3-3.4h1.4l-2.7,2.8,2.9,3.4h-1.5l-2.2-2.6-1.2,1.1v1.5h-1.1v-6.2ZM4.9,6.3h-1.9v-.9h5v.9h-1.9v5.3h-1.1v-5.3ZM8.7,5.4h1.1v2.5h3.3v-2.5h1.1v6.2h-1.1v-2.8h-3.3v2.8h-1.1v-6.2ZM15.5,5.4h4.2v.9h-3.1v1.8h2.5v.7h-2.5v1.8h3.2v.9h-4.3v-6.2ZM51.6,14.1h-30V2.6h30v11.5ZM22.6,13.1h28V3.6h-28v9.5Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 54 16" fill="none">
+            <path d="M22,4.7h1.4v6.9h-1.4v-6.9ZM24.9,4.7h3.4c3.2,0,4.3,1.6,4.3,3.4s-1.1,3.4-4,3.4h-3.7v-6.9ZM28.5,10.5c1.8,0,2.6-.8,2.6-2.3s-.6-2.3-2.8-2.3h-2v4.6h2.2ZM33.7,4.7h6.4v1.1h-5v1.8h3.9v.9h-3.9v1.9h5.1v1.1h-6.5v-6.9ZM48,10.1h-4.7l-.9,1.5h-1.5l4-6.9h1.7l4,6.9h-1.7l-.9-1.5ZM47.5,9.1l-1.8-3.2h0l-1.8,3.2h3.7ZM2.6,2.7v11.1h15.1V2.7H2.6ZM10.1,12.6c-3.6,0-6.5-1.9-6.5-4.3s2.9-4.3,6.5-4.3,6.5,1.9,6.5,4.3-2.9,4.3-6.5,4.3Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 54 16" fill="none">
+            <path d="M16.1,9.4c0-.2,0-.4,0-.5h1.1c0,.2,0,.3,0,.3,0,.8.5,1.3,1.5,1.3s1.6-.5,1.6-1.2-.4-.8-1.1-.8h-1v-.8h.9c.7,0,1-.4,1-.9s-.5-1.1-1.3-1.1-1.4.5-1.4,1.2,0,.3,0,.4h-1c0-.1,0-.3,0-.6,0-1.2.9-2,2.5-2s2.3.7,2.3,1.9-.3,1.2-.9,1.3h0c.8.2,1.2.7,1.2,1.5,0,1.3-1,2.1-2.7,2.1s-2.6-.8-2.6-2.1ZM22.1,8.2c0-2.1,1-3.4,2.8-3.4s2.3.8,2.3,2,0,.3,0,.4h-1.1c0-.1,0-.2,0-.3,0-.7-.4-1.1-1.2-1.1s-1.6.9-1.6,2.4v.5h0c.1-.7.8-1.1,1.8-1.1,1.5,0,2.3.7,2.3,1.8s-1,2.1-2.6,2.1-2.8-1.2-2.8-3.4ZM26.3,9.4c0-.6-.5-1-1.4-1s-1.5.4-1.5,1c0,.7.7,1.1,1.5,1.1s1.4-.5,1.4-1.2ZM28.2,8.1c0-2.1.9-3.4,2.7-3.4s2.7,1.3,2.7,3.4-.9,3.4-2.7,3.4-2.7-1.3-2.7-3.4ZM32.4,8.1c0-1.5-.5-2.4-1.5-2.4s-1.5.9-1.5,2.4.5,2.4,1.5,2.4,1.5-.9,1.5-2.4ZM34.5,4.8h1.2v5.6h3.3v1h-4.5v-6.6ZM44.4,9.9h-3.1l-.6,1.5h-1.2l2.7-6.6h1.5l2.7,6.6h-1.4l-.6-1.5ZM44,9.1l-1.2-3.3h0l-1.2,3.3h2.5ZM47.2,4.8h2.8c1.5,0,2.3.7,2.3,1.7s-.4,1.3-1.1,1.4h0c.8.1,1.3.7,1.3,1.5s-.7,1.9-2.4,1.9h-3v-6.6ZM50.1,7.6c.8,0,1.2-.3,1.2-.9s-.4-1-1.3-1h-1.6v1.9h1.7ZM50.2,10.5c.9,0,1.2-.4,1.2-1.1s-.5-1-1.3-1h-1.8v2h1.8ZM6.9,14.1c-3.2,0-5.9-2.6-5.9-5.9S3.7,2.3,6.9,2.3s5.9,2.6,5.9,5.9-2.6,5.9-5.9,5.9ZM6.9,3.4c-2.6,0-4.8,2.2-4.8,4.8s2.2,4.8,4.8,4.8,4.8-2.2,4.8-4.8-2.2-4.8-4.8-4.8ZM6.9,11.4c-1.8,0-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2,3.2,1.4,3.2,3.2-1.4,3.2-3.2,3.2ZM6.9,6.1c-1.2,0-2.1,1-2.1,2.1s1,2.1,2.1,2.1,2.1-1,2.1-2.1-1-2.1-2.1-2.1Z" fill="currentColor"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section padding_none is-inverse">
+    <div class="ix_card-background">
+      <div class="w-layout-grid grid_1-col position_sticky min-height_100dvh mobile-relative">
+        <div class="container">
+          <div class="w-layout-grid grid_3-col tablet-1-col gap-xsmall">
+            <!-- AI-Powered Resume Builder -->
+            <div class="card card_body on-inverse">
+              <div class="grid_1-col height_100percent">
+                <div>
+                  <div class="icon is-large margin-bottom_small">
+                    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                      <path d="M9.24998 18.7103C6.60958 17.6271 4.75 15.0307 4.75 12C4.75 8.96938 6.60958 6.37304 9.24997 5.28979" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                      <path d="M14.75 5.28979C17.3904 6.37303 19.25 8.96938 19.25 12.0001C19.25 15.0307 17.3904 17.6271 14.75 18.7103" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                      <path d="M4 19.2501L8.99998 19.2501C9.13805 19.2501 9.24998 19.1381 9.24998 19.0001L9.24997 14" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                      <path d="M20 4.75L15 4.75003C14.8619 4.75003 14.75 4.86196 14.75 5.00003L14.75 10.0001" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                    </svg>
+                  </div>
+                  <h3>AI-Powered Resume Builder</h3>
+                  <p class="paragraph_large">Upload your resume and let our AI transform it into a clean, professional, ATS-optimized CV in seconds. Your information becomes a perfect resume automatically—no formatting hassle.</p>
+                </div>
+                <div class="button-group">
+                  <a href="profile builder.html" class="button is-secondary w-button">Build Resume</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Job Matcher -->
+            <div class="w-layout-grid grid_1-col position_relative z-index_2">
+              <div class="grid_1-col height_100percent z-index_2 card_body">
+                <div class="text-color_on-overlay">
+                  <div class="icon is-large on-inverse margin-bottom_small">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                      <path d="M12.5 18.25C16.2279 18.25 19.25 15.2279 19.25 11.5C19.25 7.77208 16.2279 4.75 12.5 4.75C8.77208 4.75 5.75 7.77208 5.75 11.5C5.75 12.6007 6.01345 13.6398 6.48072 14.5578L5 19L9.71819 17.6519C10.5664 18.0361 11.5082 18.25 12.5 18.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                    </svg>
+                  </div>
+                  <h3>AI Job Matcher</h3>
+                  <p class="paragraph_large">Our AI analyzes your skills and experience, then instantly recommends the most relevant roles. Filter, shortlist, and apply to jobs with just one click—making your job search faster and hyper-personalized.</p>
+                </div>
+                <div class="button-group">
+                  <a href="Job search.html" class="button on-inverse w-button">Find Jobs</a>
+                </div>
+              </div>
+              <div class="ix_card-change-width-background">
+                <img width="331" height="528" alt="AI Job Matcher interface" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8dc87ec20ed5c6bc3_af65ed38-17c2-4626-a3d5-a64dc0fd1a0f.avif" loading="lazy" class="image image_cover"/>
+                <div class="overlay_opacity-middle"></div>
+              </div>
+            </div>
+
+            <!-- AI Learning & Skill Gap Analysis -->
+            <div class="card card_body on-inverse">
+              <div class="grid_1-col height_100percent">
+                <div>
+                  <div class="icon is-large margin-bottom_small">
+                    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 12C8.41828 12 12 8.41828 12 4C12 8.41828 15.5817 12 20 12C15.5817 12 12 15.5817 12 20C12 15.5817 8.41828 12 4 12Z" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                    </svg>
+                  </div>
+                  <h3>AI Learning Recommendations</h3>
+                  <p class="paragraph_large">PathAI detects your skill gaps and suggests targeted learning paths. Get AI-powered course recommendations that help you improve and qualify for better positions—all integrated into your career journey.</p>
+                </div>
+                <div class="button-group">
+                  <a href="Learning.html" class="button is-secondary w-button">View Recommendations</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="height_50vh"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Highlights Section -->
+  <section class="section">
+    <div class="container">
+      <div class="header">
+        <div class="eyebrow">AI-Powered Features</div>
+        <h2 class="heading_h1">Your career, supercharged by AI</h2>
+      </div>
+      <div class="w-layout-grid grid_1-col">
+        <div class="w-layout-grid grid_2-col gap-small">
+          <!-- AI Resume Builder -->
+          <div class="ix_card-rotate-left">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M9.24998 18.7103C6.60958 17.6271 4.75 15.0307 4.75 12C4.75 8.96938 6.60958 6.37304 9.24997 5.28979" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                    <path d="M14.75 5.28979C17.3904 6.37303 19.25 8.96938 19.25 12.0001C19.25 15.0307 17.3904 17.6271 14.75 18.7103" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                    <path d="M4 19.2501L8.99998 19.2501C9.13805 19.2501 9.24998 19.1381 9.24998 19.0001L9.24997 14" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                    <path d="M20 4.75L15 4.75003C14.8619 4.75003 14.75 4.86196 14.75 5.00003L14.75 10.0001" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">AI-Powered Resume Builder</div>
+                  <p class="paragraph_small text-color_secondary">Upload your information and PathAI transforms it into a clean, professional, ATS-optimized CV in seconds. No manual formatting needed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Job Matcher -->
+          <div class="ix_card-rotate-right">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M12.5 18.25C16.2279 18.25 19.25 15.2279 19.25 11.5C19.25 7.77208 16.2279 4.75 12.5 4.75C8.77208 4.75 5.75 7.77208 5.75 11.5C5.75 12.6007 6.01345 13.6398 6.48072 14.5578L5 19L9.71819 17.6519C10.5664 18.0361 11.5082 18.25 12.5 18.25Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">AI Job Matcher</div>
+                  <p class="paragraph_small text-color_secondary">Our AI analyzes your skills and instantly recommends the most relevant roles. Filter, shortlist, and apply with one click.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill Gap Analysis -->
+          <div class="ix_card-rotate-left">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 12C8.41828 12 12 8.41828 12 4C12 8.41828 15.5817 12 20 12C15.5817 12 12 15.5817 12 20C12 15.5817 8.41828 12 4 12Z" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">Learning & Skill Gap Analysis</div>
+                  <p class="paragraph_small text-color_secondary">PathAI detects skill gaps and suggests targeted learning paths. Get AI-powered course recommendations to qualify for better roles.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Candidate Ranking -->
+          <div class="ix_card-rotate-right">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M5.25 6.75H18.75V17.25H5.25V6.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                    <path d="M5.25 6.75L12 12L18.75 6.75" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">AI Candidate Ranking System</div>
+                  <p class="paragraph_small text-color_secondary">Evaluates applicants automatically, verifies resumes, detects inconsistencies, scores skills, and recommends top candidates instantly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Application Tracking -->
+          <div class="ix_card-rotate-left">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M19.25 12C19.25 16.0041 16.0041 19.25 12 19.25C7.99594 19.25 4.75 16.0041 4.75 12C4.75 7.99594 7.99594 4.75 12 4.75C16.0041 4.75 19.25 7.99594 19.25 12Z" stroke="currentColor" stroke-width="1.5"></path>
+                    <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="1.5"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">Application Tracking</div>
+                  <p class="paragraph_small text-color_secondary">Monitor every application and status update. Get notified as your application progresses from submission to final decision.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security & Compliance -->
+          <div class="ix_card-rotate-right">
+            <div class="card card_body">
+              <div class="w-layout-grid grid_1-col gap-medium ratio_16x9">
+                <div class="icon is-xlarge">
+                  <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none">
+                    <path d="M17.3654 5.32894C17.8831 5.54543 18.3534 5.86273 18.7495 6.26274C19.146 6.6625 19.4604 7.13723 19.675 7.65978C19.8895 8.18233 20 8.74246 20 9.30814C20 9.87384 19.8895 10.4339 19.675 10.9565C19.4604 11.4791 19.146 11.9538 18.7495 12.3535L12.0001 19L5.2496 12.3535C4.44951 11.5457 4 10.4501 4 9.3076C4 8.16516 4.44951 7.0695 5.2496 6.26166C6.04975 5.45384 7.13498 5 8.26647 5C9.39804 5 10.4833 5.45384 11.2833 6.26166L12.016 6.99843L12.7158 6.26274C13.112 5.86273 13.5823 5.54543 14.0999 5.32894C14.6176 5.11246 15.1724 5.00103 15.7327 5.00103C16.2929 5.00103 16.8478 5.11246 17.3654 5.32894Z" stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                  </svg>
+                </div>
+                <div class="max-width_xsmall">
+                  <div class="paragraph_large">Security & Compliance</div>
+                  <p class="paragraph_small text-color_secondary">GDPR-ready controls, encrypted storage, and malware scanning protect your privacy and data at every step.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="section">
+    <div class="container">
+      <div class="w-layout-grid grid_2-col tablet-1-col gap-large">
+        <div>
+          <div class="padding_large">
+            <p class="paragraph_xxlarge margin-bottom_small">"Resume parsing and job matching made my job search efficient. I found relevant roles quickly and tracked every application stage with clear updates. The structured pipeline and detailed feedback kept me organized and informed throughout the process. Highly recommended for a transparent, data-driven job search."</p>
+            <div class="logo">
+              <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 54 16" fill="none">
+                <path d="M16.1,9.4c0-.2,0-.4,0-.5h1.1c0,.2,0,.3,0,.3,0,.8.5,1.3,1.5,1.3s1.6-.5,1.6-1.2-.4-.8-1.1-.8h-1v-.8h.9c.7,0,1-.4,1-.9s-.5-1.1-1.3-1.1-1.4.5-1.4,1.2,0,.3,0,.4h-1c0-.1,0-.3,0-.6,0-1.2.9-2,2.5-2s2.3.7,2.3,1.9-.3,1.2-.9,1.3h0c.8.2,1.2.7,1.2,1.5,0,1.3-1,2.1-2.7,2.1s-2.6-.8-2.6-2.1ZM22.1,8.2c0-2.1,1-3.4,2.8-3.4s2.3.8,2.3,2,0,.3,0,.4h-1.1c0-.1,0-.2,0-.3,0-.7-.4-1.1-1.2-1.1s-1.6.9-1.6,2.4v.5h0c.1-.7.8-1.1,1.8-1.1,1.5,0,2.3.7,2.3,1.8s-1,2.1-2.6,2.1-2.8-1.2-2.8-3.4ZM26.3,9.4c0-.6-.5-1-1.4-1s-1.5.4-1.5,1c0,.7.7,1.1,1.5,1.1s1.4-.5,1.4-1.2ZM28.2,8.1c0-2.1.9-3.4,2.7-3.4s2.7,1.3,2.7,3.4-.9,3.4-2.7,3.4-2.7-1.3-2.7-3.4ZM32.4,8.1c0-1.5-.5-2.4-1.5-2.4s-1.5.9-1.5,2.4.5,2.4,1.5,2.4,1.5-.9,1.5-2.4ZM34.5,4.8h1.2v5.6h3.3v1h-4.5v-6.6ZM44.4,9.9h-3.1l-.6,1.5h-1.2l2.7-6.6h1.5l2.7,6.6h-1.4l-.6-1.5ZM44,9.1l-1.2-3.3h0l-1.2,3.3h2.5ZM47.2,4.8h2.8c1.5,0,2.3.7,2.3,1.7s-.4,1.3-1.1,1.4h0c.8.1,1.3.7,1.3,1.5s-.7,1.9-2.4,1.9h-3v-6.6ZM50.1,7.6c.8,0,1.2-.3,1.2-.9s-.4-1-1.3-1h-1.6v1.9h1.7ZM50.2,10.5c.9,0,1.2-.4,1.2-1.1s-.5-1-1.3-1h-1.8v2h1.8ZM6.9,14.1c-3.2,0-5.9-2.6-5.9-5.9S3.7,2.3,6.9,2.3s5.9,2.6,5.9,5.9-2.6,5.9-5.9,5.9ZM6.9,3.4c-2.6,0-4.8,2.2-4.8,4.8s2.2,4.8,4.8,4.8,4.8-2.2,4.8-4.8-2.2-4.8-4.8-4.8ZM6.9,11.4c-1.8,0-3.2-1.4-3.2-3.2s1.4-3.2,3.2-3.2,3.2,1.4,3.2,3.2-1.4,3.2-3.2,3.2ZM6.9,6.1c-1.2,0-2.1,1-2.1,2.1s1,2.1,2.1,2.1,2.1-1,2.1-2.1-1-2.1-2.1-2.1Z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <div class="padding-top_xsmall">
+              <div>Jordan Avery</div>
+              <div class="paragraph_small text-color_secondary">Data Analyst, Fintech</div>
+            </div>
+          </div>
+        </div>
+        <div class="image-ratio_auto">
+          <img width="320" height="735" alt="Person demonstrating app usage" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b81f64bc7a3aabff2d_01aa9434-8de4-4f0f-b638-dc3a21d5bfc1.avif" loading="lazy" class="image_cover"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights Section -->
+  <section class="section">
+    <div class="container">
+      <div class="header">
+        <h2 class="heading_h2 max-width_large">Essential insights for job seekers</h2>
+      </div>
+      <div class="w-layout-grid grid_3-col tablet-1-col gap-small">
+        <a href="resume parsing.html" class="content-block-link w-inline-block">
+          <div class="image-ratio_2x3 margin-bottom_xsmall ratio_1x1_mobile-l">
+            <img width="320" height="480" alt="Job listings" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8e577fa7c64bd3d8a_12fcb9a4-1967-41d9-917a-7c4beabe4a30.avif" loading="lazy" class="image_cover"/>
+          </div>
+          <h3 class="heading_h4">Optimize your resume for results</h3>
+          <div>Get actionable advice to refine your CV, highlight key skills, and increase your visibility to employers.</div>
+        </a>
+        <a href="Application Status.html" class="content-block-link w-inline-block">
+          <div class="image-ratio_2x3 margin-bottom_xsmall ratio_1x1_mobile-l">
+            <img width="320" height="480" alt="Application workflow interface" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8692fcdf58b7dbe0e_07c9c391-0b11-4288-8337-cb3439550133.avif" loading="lazy" class="image_cover"/>
+          </div>
+          <h3 class="heading_h4">Master the application workflow</h3>
+          <div>Understand each step, from profile setup to tracking applications, for a streamlined job search.</div>
+        </a>
+        <a href="Learning.html" class="content-block-link w-inline-block">
+          <div class="image-ratio_2x3 margin-bottom_xsmall ratio_1x1_mobile-l">
+            <img width="320" height="480" alt="Team collaborating" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b81d0294b119c0ac99_07f67985-4052-46fd-9c31-fa629e175f2e.avif" loading="lazy" class="image_cover"/>
+          </div>
+          <h3 class="heading_h4">Track industry shifts and skills</h3>
+          <div>Identify trending roles, assess your skill set, and close gaps to stay competitive in the market.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <div class="container is-small">
+      <div class="header is-align-center">
+        <h2>Your questions, answered clearly</h2>
+        <p class="subheading">Explore detailed answers to common candidate and employer questions about profiles, applications, security, and job search features.</p>
+      </div>
+      <div class="flex_vertical">
+        <div data-delay="0" data-hover="false" class="accordion is-transparent w-dropdown">
+          <div class="accordion_toggle-transparent w-dropdown-toggle">
+            <div class="accordion_icon w-icon-dropdown-toggle"></div>
+            <div class="paragraph_large margin-bottom_none">How do I upload my resume?</div>
+          </div>
+          <nav class="accordion_content w-dropdown-list">
+            <div class="padding_xsmall padding-horizontal_none">
+              <div class="rich-text w-richtext">
+                <p>Sign in, go to your profile, and select 'Upload Resume.' Supported formats: PDF and DOCX. Your resume will be parsed for skills, experience, and education. Edit parsed details as needed before saving.</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div data-delay="0" data-hover="false" class="accordion is-transparent w-dropdown">
+          <div class="accordion_toggle-transparent w-dropdown-toggle">
+            <div class="accordion_icon w-icon-dropdown-toggle"></div>
+            <div class="paragraph_large margin-bottom_none">What job filters can I use?</div>
+          </div>
+          <nav class="accordion_content w-dropdown-list">
+            <div class="padding_xsmall padding-horizontal_none">
+              <div class="rich-text w-richtext">
+                <p>Filter jobs by location, work type (remote, hybrid, on-site), salary range, seniority, and tags. Use the search and filter tools on the job search page to narrow your results.</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div data-delay="0" data-hover="false" class="accordion is-transparent w-dropdown">
+          <div class="accordion_toggle-transparent w-dropdown-toggle">
+            <div class="accordion_icon w-icon-dropdown-toggle"></div>
+            <div class="paragraph_large margin-bottom_none">How can I track my applications?</div>
+          </div>
+          <nav class="accordion_content w-dropdown-list">
+            <div class="padding_xsmall padding-horizontal_none">
+              <div class="rich-text w-richtext">
+                <p>View your application status in your dashboard. Each application displays its current stage, such as 'Submitted,' 'Phone Screen,' or 'Offer Pending.' Updates are provided as your application progresses.</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div data-delay="0" data-hover="false" class="accordion is-transparent w-dropdown">
+          <div class="accordion_toggle-transparent w-dropdown-toggle">
+            <div class="accordion_icon w-icon-dropdown-toggle"></div>
+            <div class="paragraph_large margin-bottom_none">How is my data kept secure?</div>
+          </div>
+          <nav class="accordion_content w-dropdown-list">
+            <div class="padding_xsmall padding-horizontal_none">
+              <div class="rich-text w-richtext">
+                <p>All data is protected with encryption, secure password storage, GDPR-compliant handling, and malware scanning for uploaded files. Privacy settings default to private until you opt in.</p>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="w-layout-grid grid_3-col tablet-1-col gap-small">
+        <div class="header margin-bottom_none">
+          <h2 class="heading_h2">Accelerate hiring. Simplify every step.</h2>
+          <p class="subheading">Centralize job posts, candidate tracking, and team collaboration in a secure, AI-powered platform. Streamline your hiring pipeline with structured profiles, automated screening, and actionable analytics.</p>
+          <div class="button-group">
+            <a href="signup.html" class="button w-button">Start now</a>
+            <a href="pipeline.html" class="button is-secondary w-button">See demo</a>
+          </div>
+        </div>
+        <div class="image-ratio_4x3">
+          <img width="673" height="504" alt="Job listings" src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/692607b8e577fa7c64bd3d8a_12fcb9a4-1967-41d9-917a-7c4beabe4a30.avif" loading="lazy" class="image_cover"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer is-inverse">
+    <div class="container">
+      <h2 class="heading_huge">Advance your hiring strategy<br/></h2>
+      <div class="flex_horizontal is-space-between tablet-vertical tablet-x-center gap-small margin-top_medium">
+        <a href="mailto:contact@pathai.com" class="footer_link on-inverse w-inline-block">
+          <div class="paragraph_xlarge">contact@pathai.com</div>
+        </a>
+        <ul role="list" class="flex_horizontal is-y-center is-x-center gap-xsmall is-wrap margin-bottom_none padding_none w-list-unstyled">
+          <li class="margin-bottom_none">
+            <a href="https://dribbble.com" target="_blank" class="footer_link on-inverse w-inline-block">
+              <div>Dribbble</div>
+            </a>
+          </li>
+          <li class="margin-bottom_none">
+            <a href="https://instagram.com" target="_blank" class="footer_link on-inverse w-inline-block">
+              <div>Instagram</div>
+            </a>
+          </li>
+          <li class="margin-bottom_none">
+            <a href="https://linkedin.com" target="_blank" class="footer_link on-inverse w-inline-block">
+              <div>LinkedIn</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Webflow Scripts -->
+  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=69260652d34fb63c072e10f8" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/js/webflow.schunk.3078112a5020af6a.js" type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/js/webflow.schunk.4f4f1139be430680.js" type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/69260652d34fb63c072e10f8/js/webflow.ed04c556.7f2aaf7f72d30142.js" type="text/javascript"></script>
+  <!-- Include frontend API helper -->
+  <script src="api.js"></script>
+  </body>
+</html>

@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html data-wf-domain="pathai-e862ac.webflow.io" data-wf-page="application-status" data-wf-site="69260652d34fb63c072e10f8">
+<head>
+  <meta charset="utf-8"/>
+  <title>Application Status | PathAI</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Webflow" name="generator"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Inter:regular"] } });
+  </script>
+  <style>
+    /* Base styles (matching your landing page) */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+      --bg-color: #ffffff;
+      --card-bg: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --info-color: #3b82f6;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .heading_h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .subheading {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .button.is-secondary {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .flex_vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .nav {
+      background: white;
+      padding: 16px 0;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav_logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav_logo-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .nav_menu {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav_link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    /* Application status styles */
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .status-stats {
+      display: flex;
+      gap: 30px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .application-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .application-card {
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .application-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .application-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .application-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--text-color);
+    }
+
+    .application-company {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 4px;
+    }
+
+    .application-date {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .status-badge.submitted {
+      background: #f3f4f6;
+      color: var(--text-secondary);
+    }
+
+    .status-badge.under-review {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning-color);
+    }
+
+    .status-badge.interview {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--info-color);
+    }
+
+    .status-badge.offer {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success-color);
+    }
+
+    .status-badge.rejected {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger-color);
+    }
+
+    .progress-container {
+      margin: 16px 0;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .progress-fill.submitted {
+      width: 25%;
+      background: #9ca3af;
+    }
+
+    .progress-fill.under-review {
+      width: 50%;
+      background: var(--warning-color);
+    }
+
+    .progress-fill.interview {
+      width: 75%;
+      background: var(--info-color);
+    }
+
+    .progress-fill.offer {
+      width: 100%;
+      background: var(--success-color);
+    }
+
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step:not(:last-child):after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      right: -50%;
+      height: 1px;
+      background: #e5e7eb;
+      z-index: 1;
+    }
+
+    .step.active {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .step.active:after {
+      background: var(--primary-color);
+    }
+
+    .step.completed {
+      color: var(--success-color);
+    }
+
+    .step.completed:after {
+      background: var(--success-color);
+    }
+
+    .application-details {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .detail-label {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .detail-value {
+      font-weight: 500;
+      font-size: 0.875rem;
+    }
+
+    .notes-section {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .note-item {
+      background: #f9fafb;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 0.875rem;
+    }
+
+    .note-date {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+    }
+
+    .add-note {
+      margin-top: 16px;
+    }
+
+    .add-note textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      resize: vertical;
+      min-height: 80px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .status-stats {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .application-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation (same as landing page) -->
+  <div class="nav">
+    <div class="container nav_container">
+      <a href="Landing page.html" class="nav_logo">
+        <div class="nav_logo-icon">
+          <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+            <path d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div>PathAI</div>
+      </a>
+      <nav class="nav_menu">
+        <a href="/" class="nav_link">Home</a>
+        <a href="Job search.html" class="nav_link">Job Search</a>
+        <a href="profile builder.html" class="nav_link">Profile</a>
+        <a href="Application Status.html" class="nav_link">Applications</a>
+      </nav>
+      <a href="signup.html" class="button">Sign up</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <h1 class="heading_h1">Application Status</h1>
+      <p class="subheading">Track the progress of your job applications and stay updated on next steps.</p>
+
+      <div class="status-header">
+        <div></div>
+        <div class="status-stats">
+          <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Total Applications</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" style="color: var(--warning-color);">3</div>
+            <div class="stat-label">Under Review</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" style="color: var(--info-color);">2</div>
+            <div class="stat-label">Interviews</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" style="color: var(--success-color);">1</div>
+            <div class="stat-label">Offers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application List -->
+  <section class="section">
+    <div class="container">
+      <div class="application-list">
+        <!-- Application 1 -->
+        <div class="application-card">
+          <div class="application-header">
+            <div>
+              <div class="application-company">TechCorp</div>
+              <h3 class="application-title">Senior AI Engineer</h3>
+              <div class="application-date">Applied on June 15, 2025</div>
+            </div>
+            <div class="status-badge interview">Interview</div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill interview"></div>
+            </div>
+            <div class="progress-steps">
+              <div class="step completed">
+                <div>Submitted</div>
+              </div>
+              <div class="step completed">
+                <div>Under Review</div>
+              </div>
+              <div class="step active">
+                <div>Interview</div>
+              </div>
+              <div class="step">
+                <div>Decision</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="application-details">
+            <div class="detail-row">
+              <div class="detail-label">Salary Range</div>
+              <div class="detail-value">$120,000 - $150,000</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">San Francisco, CA (Remote)</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Contact</div>
+              <div class="detail-value">Sarah Johnson (sarah@techcorp.com)</div>
+            </div>
+          </div>
+
+          <div class="notes-section">
+            <div class="notes-header">
+              <h4 style="margin: 0; font-size: 1rem;">Notes</h4>
+              <button class="button is-secondary" style="font-size: 0.75rem; padding: 6px 12px;">+ Add Note</button>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">June 25, 2025</div>
+              <div>Scheduled technical interview for July 2nd at 2:00 PM PDT. Preparation: Review Python algorithms and system design principles.</div>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">June 20, 2025</div>
+              <div>Received email from HR about next steps. Need to complete coding assessment by June 27th.</div>
+            </div>
+
+            <div class="add-note">
+              <textarea placeholder="Add a note about this application..."></textarea>
+              <button class="button" style="font-size: 0.875rem; padding: 8px 16px;">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Application 2 -->
+        <div class="application-card">
+          <div class="application-header">
+            <div>
+              <div class="application-company">DataWorks</div>
+              <h3 class="application-title">Data Analyst</h3>
+              <div class="application-date">Applied on June 10, 2025</div>
+            </div>
+            <div class="status-badge under-review">Under Review</div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill under-review"></div>
+            </div>
+            <div class="progress-steps">
+              <div class="step completed">
+                <div>Submitted</div>
+              </div>
+              <div class="step active">
+                <div>Under Review</div>
+              </div>
+              <div class="step">
+                <div>Interview</div>
+              </div>
+              <div class="step">
+                <div>Decision</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="application-details">
+            <div class="detail-row">
+              <div class="detail-label">Salary Range</div>
+              <div class="detail-value">$90,000 - $110,000</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">New York, NY</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Contact</div>
+              <div class="detail-value">Michael Chen (michael@dataworks.com)</div>
+            </div>
+          </div>
+
+          <div class="notes-section">
+            <div class="notes-header">
+              <h4 style="margin: 0; font-size: 1rem;">Notes</h4>
+              <button class="button is-secondary" style="font-size: 0.75rem; padding: 6px 12px;">+ Add Note</button>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">June 18, 2025</div>
+              <div>Received confirmation email that application is under review. Expected timeline: 2-3 weeks.</div>
+            </div>
+
+            <div class="add-note">
+              <textarea placeholder="Add a note about this application..."></textarea>
+              <button class="button" style="font-size: 0.875rem; padding: 8px 16px;">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Application 3 -->
+        <div class="application-card">
+          <div class="application-header">
+            <div>
+              <div class="application-company">WebFlow Inc.</div>
+              <h3 class="application-title">Frontend Developer</h3>
+              <div class="application-date">Applied on June 5, 2025</div>
+            </div>
+            <div class="status-badge offer">Offer</div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill offer"></div>
+            </div>
+            <div class="progress-steps">
+              <div class="step completed">
+                <div>Submitted</div>
+              </div>
+              <div class="step completed">
+                <div>Under Review</div>
+              </div>
+              <div class="step completed">
+                <div>Interview</div>
+              </div>
+              <div class="step completed">
+                <div>Decision</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="application-details">
+            <div class="detail-row">
+              <div class="detail-label">Salary Range</div>
+              <div class="detail-value">€70,000 - €90,000</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">Berlin, Germany</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Contact</div>
+              <div class="detail-value">Anna Schmidt (anna@webflow.com)</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Offer Deadline</div>
+              <div class="detail-value">July 10, 2025</div>
+            </div>
+          </div>
+
+          <div class="notes-section">
+            <div class="notes-header">
+              <h4 style="margin: 0; font-size: 1rem;">Notes</h4>
+              <button class="button is-secondary" style="font-size: 0.75rem; padding: 6px 12px;">+ Add Note</button>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">June 30, 2025</div>
+              <div>Received formal offer letter. Benefits include relocation assistance and 30 days PTO.</div>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">June 22, 2025</div>
+              <div>Final interview went well. Offer expected by end of June.</div>
+            </div>
+
+            <div class="add-note">
+              <textarea placeholder="Add a note about this application..."></textarea>
+              <button class="button" style="font-size: 0.875rem; padding: 8px 16px;">Save Note</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Application 4 -->
+        <div class="application-card">
+          <div class="application-header">
+            <div>
+              <div class="application-company">PeopleFirst</div>
+              <h3 class="application-title">HR Manager</h3>
+              <div class="application-date">Applied on May 28, 2025</div>
+            </div>
+            <div class="status-badge submitted">Submitted</div>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill submitted"></div>
+            </div>
+            <div class="progress-steps">
+              <div class="step active">
+                <div>Submitted</div>
+              </div>
+              <div class="step">
+                <div>Under Review</div>
+              </div>
+              <div class="step">
+                <div>Interview</div>
+              </div>
+              <div class="step">
+                <div>Decision</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="application-details">
+            <div class="detail-row">
+              <div class="detail-label">Salary Range</div>
+              <div class="detail-value">£60,000 - £80,000</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">London, UK</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Contact</div>
+              <div class="detail-value">Emma Wilson (emma@peoplefirst.com)</div>
+            </div>
+          </div>
+
+          <div class="notes-section">
+            <div class="notes-header">
+              <h4 style="margin: 0; font-size: 1rem;">Notes</h4>
+              <button class="button is-secondary" style="font-size: 0.75rem; padding: 6px 12px;">+ Add Note</button>
+            </div>
+
+            <div class="note-item">
+              <div class="note-date">May 29, 2025</div>
+              <div>Application submitted. Waiting for confirmation email.</div>
+            </div>
+
+            <div class="add-note">
+              <textarea placeholder="Add a note about this application..."></textarea>
+              <button class="button" style="font-size: 0.875rem; padding: 8px 16px;">Save Note</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #f9fafb; padding: 40px 0; text-align: center;">
+    <div class="container">
+      <p style="color: var(--text-secondary);">© 2025 PathAI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="api.js"></script>
+  <script>
+    // Load applications from backend
+    async function loadApplications() {
+      try {
+        // In a real app, candidate_id would come from authentication
+        const candidateId = 1; // Placeholder
+        const response = await fetch(`/api/applications?candidate_id=${candidateId}`);
+        const applications = await response.json();
+        
+        // Fetch job details for each application
+        const appsWithJobs = await Promise.all(applications.map(async (app) => {
+          const jobResponse = await fetch(`/api/jobs`);
+          const jobs = await jobResponse.json();
+          const job = jobs.find(j => j.job_id === app.job_id);
+          return { ...app, job };
+        }));
+        
+        displayApplications(appsWithJobs);
+      } catch (error) {
+        console.error('Error loading applications:', error);
+      }
+    }
+
+    function displayApplications(applications) {
+      const container = document.querySelector('.application-list');
+      if (!container || applications.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 40px; color: var(--text-secondary);">No applications found. <a href="Job search.html">Search for jobs</a> to apply.</p>';
+        return;
+      }
+      
+      container.innerHTML = '';
+      applications.forEach(app => {
+        const appCard = document.createElement('div');
+        appCard.className = 'application-card';
+        const statusClass = app.status?.toLowerCase().replace(' ', '-') || 'submitted';
+        const progressClass = statusClass;
+        
+        appCard.innerHTML = `
+          <div class="application-header">
+            <div>
+              <div class="application-company">${app.job?.title || 'Job'}</div>
+              <h3 class="application-title">${app.job?.title || 'Application'}</h3>
+              <div class="application-date">Applied on ${new Date(app.applied_at || Date.now()).toLocaleDateString()}</div>
+            </div>
+            <div class="status-badge ${statusClass}">${app.status || 'Applied'}</div>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill ${progressClass}"></div>
+            </div>
+            <div class="progress-steps">
+              <div class="step ${app.status === 'Applied' ? 'active' : 'completed'}">Submitted</div>
+              <div class="step ${app.status === 'Under Review' ? 'active' : app.status === 'Applied' ? '' : 'completed'}">Under Review</div>
+              <div class="step ${app.status === 'Interview' ? 'active' : ['Applied', 'Under Review'].includes(app.status) ? '' : 'completed'}">Interview</div>
+              <div class="step ${app.status === 'Offer' ? 'active' : ['Applied', 'Under Review', 'Interview'].includes(app.status) ? '' : 'completed'}">Decision</div>
+            </div>
+          </div>
+          <div class="application-details">
+            <div class="detail-row">
+              <div class="detail-label">Status</div>
+              <div class="detail-value">${app.status || 'Applied'}</div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-label">Location</div>
+              <div class="detail-value">${app.job?.location || 'Not specified'}</div>
+            </div>
+          </div>
+          <div class="notes-section">
+            <div class="notes-header">
+              <h4 style="margin: 0; font-size: 1rem;">Notes</h4>
+              <button class="button is-secondary" style="font-size: 0.75rem; padding: 6px 12px;" onclick="toggleAddNote(this)">+ Add Note</button>
+            </div>
+            <div class="add-note" style="display: none;">
+              <textarea placeholder="Add a note about this application..."></textarea>
+              <button class="button" style="font-size: 0.875rem; padding: 8px 16px;" onclick="saveNote(${app.application_id}, this)">Save Note</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(appCard);
+      });
+    }
+
+    function toggleAddNote(button) {
+      const addNoteSection = button.closest('.notes-section').querySelector('.add-note');
+      addNoteSection.style.display = addNoteSection.style.display === 'none' ? 'block' : 'none';
+    }
+
+    async function saveNote(applicationId, button) {
+      const textarea = button.previousElementSibling;
+      const noteText = textarea.value.trim();
+      
+      if (!noteText) {
+        alert('Please enter a note');
+        return;
+      }
+      
+      try {
+        const response = await fetch('/api/pipeline/notes', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            application_id: applicationId,
+            author_id: 1, // Placeholder - should come from auth
+            note_text: noteText
+          })
+        });
+        
+        if (response.ok) {
+          textarea.value = '';
+          button.closest('.add-note').style.display = 'none';
+          alert('Note saved successfully!');
+          loadApplications(); // Reload to show the note
+        }
+      } catch (error) {
+        console.error('Error saving note:', error);
+        alert('Failed to save note');
+      }
+    }
+
+    // Simple JavaScript for interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+      loadApplications();
+      // Add note functionality
+      const addNoteButtons = document.querySelectorAll('.button.is-secondary[style*="Add Note"]');
+      addNoteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const addNoteSection = this.closest('.notes-section').querySelector('.add-note');
+          addNoteSection.style.display = addNoteSection.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+
+      // Save note functionality
+      const saveNoteButtons = document.querySelectorAll('.add-note .button');
+      saveNoteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const textarea = this.previousElementSibling;
+          const noteText = textarea.value.trim();
+
+          if (noteText) {
+            const notesContainer = this.closest('.notes-section');
+            const noteItem = document.createElement('div');
+            noteItem.className = 'note-item';
+
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = today.toLocaleDateString('en-US', options);
+
+            noteItem.innerHTML = `
+              <div class="note-date">${dateString}</div>
+              <div>${noteText}</div>
+            `;
+
+            // Insert the new note before the add note section
+            const existingNotes = notesContainer.querySelectorAll('.note-item');
+            if (existingNotes.length > 0) {
+              existingNotes[existingNotes.length - 1].after(noteItem);
+            } else {
+              notesContainer.querySelector('.notes-header').after(noteItem);
+            }
+
+            // Clear the textarea
+            textarea.value = '';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

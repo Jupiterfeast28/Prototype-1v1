@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>AI Candidate Ranking | PathAI</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+      --bg-color: #ffffff;
+      --card-bg: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-color);
+      background-color: #f9fafb;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    /* Navigation */
+    .nav {
+      background: white;
+      padding: 16px 0;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav_logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+    }
+
+    .nav_logo-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .nav_menu {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav_link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .heading_h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .subheading {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .grid_2-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .grid_3-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* Candidate Ranking Styles */
+    .candidate-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s;
+    }
+
+    .candidate-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-color);
+    }
+
+    .candidate-rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-right: 16px;
+    }
+
+    .candidate-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .candidate-info {
+      flex: 1;
+    }
+
+    .candidate-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .candidate-role {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 8px;
+    }
+
+    .score-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .score-high {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .score-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .score-low {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .skill-match {
+      margin: 16px 0;
+    }
+
+    .skill-match-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    .skill-bar {
+      display: flex;
+      height: 6px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .skill-bar-fill {
+      background: var(--success-color);
+      transition: width 0.3s;
+    }
+
+    .skill-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .ai-recommendation {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      color: #0c4a6e;
+      margin: 12px 0;
+    }
+
+    .flags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .flag {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .flag-warning {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .flag-success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .flag-error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .btn-small {
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .btn-small:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .filter-bar {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .filter-bar select {
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid_2-col,
+      .grid_3-col,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .heading_h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav">
+    <div class="container nav_container">
+      <a href="Landing page.html" class="nav_logo">
+        <div class="nav_logo-icon">
+          <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+            <path d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <span>PathAI</span>
+      </a>
+      <nav class="nav_menu">
+        <a href="Landing page.html" class="nav_link">Home</a>
+        <a href="candidate inbox.html" class="nav_link">Inbox</a>
+        <a href="ai candidate ranking.html" class="nav_link">AI Ranking</a>
+        <a href="pipeline.html" class="nav_link">Pipeline</a>
+      </nav>
+      <a href="signup.html" class="button">Sign In</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <h1 class="heading_h1">AI Candidate Ranking System</h1>
+      <p class="subheading">Let AI handle candidate evaluation. Our system analyzes resumes, detects inconsistencies, scores skills, and ranks candidates automatically—saving your HR team hours of manual work.</p>
+
+      <div class="grid_3-col">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; padding: 24px; text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">⚡</div>
+          <div style="font-weight: 600; margin-bottom: 8px;">Instant Scoring</div>
+          <p style="margin: 0; font-size: 0.875rem; color: rgba(255,255,255,0.9);">Resume parsing & skill analysis in seconds</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; padding: 24px; text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🔍</div>
+          <div style="font-weight: 600; margin-bottom: 8px;">Smart Detection</div>
+          <p style="margin: 0; font-size: 0.875rem; color: rgba(255,255,255,0.9);">Spot inconsistencies & red flags automatically</p>
+        </div>
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; padding: 24px; text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">🎯</div>
+          <div style="font-weight: 600; margin-bottom: 8px;">Top Candidates</div>
+          <p style="margin: 0; font-size: 0.875rem; color: rgba(255,255,255,0.9);">Ranked by fit & qualifications instantly</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section">
+    <div class="container">
+      <h2 style="margin-bottom: 24px;">Job Analysis: Senior Software Engineer</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">47</div>
+          <div class="stat-label">Total Applicants</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Top Matches (90%+)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Red Flags Detected</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">8h 24m</div>
+          <div class="stat-label">Time Saved by AI</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section style="padding: 40px 0;">
+    <div class="container">
+      <div class="filter-bar">
+        <span style="font-weight: 600;">Filter by:</span>
+        <select onchange="filterCandidates()">
+          <option value="">All Candidates</option>
+          <option value="high">Top Matches (90%+)</option>
+          <option value="medium">Good Fit (70-89%)</option>
+          <option value="low">Potential (50-69%)</option>
+          <option value="red-flags">Has Red Flags</option>
+        </select>
+        <select onchange="filterCandidates()">
+          <option value="">Sort By</option>
+          <option value="score-high">Highest Score</option>
+          <option value="score-low">Lowest Score</option>
+          <option value="recent">Most Recent</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ranked Candidates -->
+  <section class="section">
+    <div class="container">
+      <h2 style="margin-bottom: 24px;">Ranked Candidates (Highest Match First)</h2>
+      
+      <!-- Candidate 1 -->
+      <div class="candidate-card">
+        <div class="candidate-header">
+          <div class="candidate-rank">1</div>
+          <div class="candidate-info">
+            <div class="candidate-name">Sarah Chen</div>
+            <div class="candidate-role">Senior Software Engineer • San Francisco, CA</div>
+            <div style="margin-top: 8px;">
+              <span class="score-badge score-high">95% MATCH</span>
+              <span class="score-badge" style="background: #d1fae5; color: #065f46;">✓ VERIFIED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-match">
+          <div class="skill-match-title">Overall Skill Fit</div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width: 95%;"></div>
+          </div>
+          <div class="skill-bar-label">
+            <span>95% match</span>
+            <span>Excellent fit for role</span>
+          </div>
+        </div>
+
+        <div class="ai-recommendation">
+          <strong>🤖 AI Recommendation:</strong> Sarah is an exceptional match. She has 7+ years of software engineering experience, all required skills (Python, JavaScript, React, AWS, Docker), and her background perfectly aligns with your team's tech stack. No red flags detected. Recommend: FAST TRACK TO INTERVIEW.
+        </div>
+
+        <div>
+          <strong style="font-size: 0.875rem;">Key Strengths:</strong>
+          <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="flag flag-success">8+ years experience</span>
+            <span class="flag flag-success">All core skills</span>
+            <span class="flag flag-success">Lead experience</span>
+            <span class="flag flag-success">Remote ready</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-small" style="background: var(--success-color); color: white; border-color: var(--success-color);">✓ Move to Interview</button>
+          <button class="btn-small">View Full Profile</button>
+          <button class="btn-small">Share with Team</button>
+        </div>
+      </div>
+
+      <!-- Candidate 2 -->
+      <div class="candidate-card">
+        <div class="candidate-header">
+          <div class="candidate-rank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">2</div>
+          <div class="candidate-info">
+            <div class="candidate-name">James Rodriguez</div>
+            <div class="candidate-role">Full Stack Engineer • New York, NY</div>
+            <div style="margin-top: 8px;">
+              <span class="score-badge score-high">88% MATCH</span>
+              <span class="score-badge" style="background: #fef3c7; color: #92400e;">⚠ REVIEW</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-match">
+          <div class="skill-match-title">Overall Skill Fit</div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width: 88%;"></div>
+          </div>
+          <div class="skill-bar-label">
+            <span>88% match</span>
+            <span>Strong fit, some gaps</span>
+          </div>
+        </div>
+
+        <div class="ai-recommendation">
+          <strong>🤖 AI Recommendation:</strong> James is a strong candidate with solid full-stack experience. Has most required skills but missing: Docker expertise (could learn quickly), Advanced AWS. Employment gap detected: 6 months (2022-2023). No concerning red flags. Recommend: INTERVIEW with discussion about Docker experience.
+        </div>
+
+        <div>
+          <strong style="font-size: 0.875rem;">Key Strengths & Notes:</strong>
+          <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="flag flag-success">6+ years experience</span>
+            <span class="flag flag-warning">6-month gap (2022-23)</span>
+            <span class="flag flag-warning">Limited Docker</span>
+            <span class="flag flag-success">Strong learner</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-small">Move to Interview</button>
+          <button class="btn-small">View Full Profile</button>
+          <button class="btn-small">Request References</button>
+        </div>
+      </div>
+
+      <!-- Candidate 3 -->
+      <div class="candidate-card">
+        <div class="candidate-header">
+          <div class="candidate-rank" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">3</div>
+          <div class="candidate-info">
+            <div class="candidate-name">Alex Kim</div>
+            <div class="candidate-role">Junior to Mid-Level Engineer • Remote</div>
+            <div style="margin-top: 8px;">
+              <span class="score-badge score-medium">72% MATCH</span>
+              <span class="score-badge" style="background: #d1fae5; color: #065f46;">✓ VERIFIED</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-match">
+          <div class="skill-match-title">Overall Skill Fit</div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width: 72%;"></div>
+          </div>
+          <div class="skill-bar-label">
+            <span>72% match</span>
+            <span>Good potential with mentoring</span>
+          </div>
+        </div>
+
+        <div class="ai-recommendation">
+          <strong>🤖 AI Recommendation:</strong> Alex shows great potential but has only 3 years of experience (you require 5+). Missing: Docker, Advanced AWS, Leadership experience. However, displays strong fundamentals and appears to be a quick learner. Recommend: GROWTH POTENTIAL - Consider for Junior/Mentorship role or as backup candidate.
+        </div>
+
+        <div>
+          <strong style="font-size: 0.875rem;">Growth Opportunities:</strong>
+          <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="flag flag-warning">Only 3 years exp (need 5+)</span>
+            <span class="flag flag-warning">No Docker</span>
+            <span class="flag flag-warning">No AWS</span>
+            <span class="flag flag-success">Strong fundamentals</span>
+            <span class="flag flag-success">Quick learner</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-small">Suggest Learning Path</button>
+          <button class="btn-small">View Full Profile</button>
+          <button class="btn-small">Save for Future</button>
+        </div>
+      </div>
+
+      <!-- Candidate 4 - Red Flags -->
+      <div class="candidate-card" style="border-left: 4px solid var(--danger-color);">
+        <div class="candidate-header">
+          <div class="candidate-rank" style="background: var(--danger-color);">4</div>
+          <div class="candidate-info">
+            <div class="candidate-name">Michael Torres</div>
+            <div class="candidate-role">Software Engineer • Los Angeles, CA</div>
+            <div style="margin-top: 8px;">
+              <span class="score-badge score-low">58% MATCH</span>
+              <span class="score-badge" style="background: #fee2e2; color: #991b1b;">⚠ RED FLAGS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-match">
+          <div class="skill-match-title">Overall Skill Fit</div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" style="width: 58%; background: var(--danger-color);"></div>
+          </div>
+          <div class="skill-bar-label">
+            <span>58% match</span>
+            <span>Below preferred threshold</span>
+          </div>
+        </div>
+
+        <div class="ai-recommendation">
+          <strong>🤖 AI Recommendation:</strong> Michael has concerning profile discrepancies. Resume lists "Senior Engineer" title but only 2 years of experience. AWS certification date appears false (2020 cert but graduated 2021). Missing: Docker, TypeScript, React. Multiple employment inconsistencies detected. Recommend: REQUEST CLARIFICATION or PASS to next candidates.
+        </div>
+
+        <div>
+          <strong style="font-size: 0.875rem;">Red Flags & Concerns:</strong>
+          <div style="margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="flag flag-error">Title/experience mismatch</span>
+            <span class="flag flag-error">Certification date inconsistency</span>
+            <span class="flag flag-error">Missing core skills</span>
+            <span class="flag flag-error">Employment gaps unexplained</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-small" style="border-color: var(--danger-color); color: var(--danger-color);">Request Clarification</button>
+          <button class="btn-small">View Full Profile</button>
+          <button class="btn-small" style="border-color: var(--danger-color); color: var(--danger-color);">Archive</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #f9fafb; padding: 40px 0; text-align: center; margin-top: 60px;">
+    <div class="container">
+      <p style="color: var(--text-secondary); margin: 0;">© 2025 PathAI. Powered by AI hiring intelligence.</p>
+      <p style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 12px;">AI Candidate Ranking • Resume Analysis • Skill Matching • Time Saved</p>
+    </div>
+  </footer>
+
+  <script>
+    function filterCandidates() {
+      alert('Filtering candidates based on your selection...\n\nThis demo shows the key functionality:\n\n✓ Instant AI scoring\n✓ Red flag detection\n✓ Skill gap analysis\n✓ Employment verification\n✓ One-click actions for HR teams');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('AI Candidate Ranking System loaded.');
+    });
+  </script>
+</body>
+</html>

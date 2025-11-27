@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html data-wf-domain="pathai-e862ac.webflow.io" data-wf-page="profile-builder" data-wf-site="69260652d34fb63c072e10f8">
+<head>
+  <meta charset="utf-8"/>
+  <title>Profile Builder | PathAI</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Webflow" name="generator"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Inter:regular"] } });
+  </script>
+  <style>
+    /* Base styles (matching your landing page) */
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+      --bg-color: #ffffff;
+      --card-bg: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --success-color: #10b981;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .heading_h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .subheading {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .button.is-secondary {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .grid_2-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .flex_vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .input-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .profile-completion {
+      margin-bottom: 30px;
+    }
+
+    .completion-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+
+    .completion-bar-fill {
+      height: 100%;
+      background: var(--success-color);
+      width: 30%; /* Update dynamically with JS */
+    }
+
+    .file-upload {
+      border: 2px dashed var(--border-color);
+      border-radius: 6px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .file-upload:hover {
+      border-color: var(--primary-color);
+    }
+
+    .file-upload input[type="file"] {
+      display: none;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: #f3f4f6;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .nav {
+      background: white;
+      padding: 16px 0;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav_logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav_logo-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .nav_menu {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav_link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-avatar-label {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .grid_2-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation (same as landing page) -->
+  <div class="nav">
+    <div class="container nav_container">
+      <a href="Landing page.html" class="nav_logo">
+        <div class="nav_logo-icon">
+          <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+            <path d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div>PathAI</div>
+      </a>
+      <nav class="nav_menu">
+        <a href="Landing page.html#solutions" class="nav_link">Solutions</a>
+        <a href="about.html" class="nav_link">About</a>
+        <a href="blog.html" class="nav_link">Blog</a>
+        <a href="help-center.html" class="nav_link">Support</a>
+      </nav>
+      <a href="signup.html" class="button">Sign up</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <h1 class="heading_h1">AI-Powered Resume Builder</h1>
+      <p class="subheading">Let our AI create your perfect resume. Upload your information or paste your content, and watch PathAI transform it into a clean, professional, ATS-optimized CV in seconds.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; margin-bottom: 40px;">
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 2rem; margin-bottom: 12px;">📤</div>
+          <div style="font-weight: 600; margin-bottom: 4px;">Upload</div>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Upload your resume or fill in details</p>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 2rem; margin-bottom: 12px;">✨</div>
+          <div style="font-weight: 600; margin-bottom: 4px;">AI Transforms</div>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Our AI parses and optimizes instantly</p>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+          <div style="font-size: 2rem; margin-bottom: 12px;">📄</div>
+          <div style="font-weight: 600; margin-bottom: 4px;">Perfect Resume</div>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Get ATS-ready in seconds</p>
+        </div>
+      </div>
+
+      <div class="profile-completion">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Resume Ready: <strong id="completion-percent">0%</strong></span>
+          <span style="color: var(--text-secondary); font-size: 0.875rem;">Complete all sections to generate your perfect resume</span>
+        </div>
+        <div class="completion-bar">
+          <div class="completion-bar-fill" id="completion-bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profile Builder Form -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <form>
+          <!-- Avatar Upload -->
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div class="profile-avatar">
+              <img id="avatar-preview" src="https://via.placeholder.com/120" alt="Profile Avatar"/>
+              <label class="profile-avatar-label" for="avatar-upload">Change Photo</label>
+              <input type="file" id="avatar-upload" accept="image/*" style="display: none;"/>
+            </div>
+          </div>
+
+          <!-- Basic Information -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Basic Information</h2>
+            <div class="grid_2-col">
+              <div class="input-group">
+                <label for="first-name">First Name*</label>
+                <input type="text" id="first-name" required/>
+              </div>
+              <div class="input-group">
+                <label for="last-name">Last Name*</label>
+                <input type="text" id="last-name" required/>
+              </div>
+              <div class="input-group">
+                <label for="email">Email*</label>
+                <input type="email" id="email" required/>
+              </div>
+              <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone"/>
+              </div>
+              <div class="input-group">
+                <label for="location">Location*</label>
+                <input type="text" id="location" required/>
+              </div>
+              <div class="input-group">
+                <label for="linkedin">LinkedIn Profile</label>
+                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Professional Summary</h2>
+            <div class="input-group">
+              <label for="summary">Tell us about yourself and your career goals (2-3 sentences)*</label>
+              <textarea id="summary" required></textarea>
+            </div>
+          </div>
+
+          <!-- Resume Upload - AI PARSING -->
+          <div style="margin-bottom: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 40px; color: white;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 12px; color: white;">🚀 Quick Start: Upload Your Resume</h2>
+            <p style="margin-bottom: 24px; color: rgba(255,255,255,0.9);">Our AI will instantly parse your resume and populate all fields below. Save hours of manual entry!</p>
+            <div class="file-upload" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);">
+              <input type="file" id="resume-upload" accept=".pdf,.doc,.docx"/>
+              <label for="resume-upload" style="color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px;">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <p><strong>Click to upload</strong> or drag and drop</p>
+                <p style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">PDF or DOCX (max. 5MB) • AI will parse in seconds</p>
+              </label>
+            </div>
+            <div id="upload-status" style="margin-top: 16px; display: none;">
+              <p style="margin: 0; color: #10b981;">✓ Resume uploaded successfully! Parsing...</p>
+            </div>
+          </div>
+
+          <!-- Work Experience -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Work Experience</h2>
+            <div id="experience-container">
+              <div class="experience-item" style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+                <div class="grid_2-col">
+                  <div class="input-group">
+                    <label for="job-title">Job Title*</label>
+                    <input type="text" id="job-title" required/>
+                  </div>
+                  <div class="input-group">
+                    <label for="company">Company*</label>
+                    <input type="text" id="company" required/>
+                  </div>
+                  <div class="input-group">
+                    <label for="start-date">Start Date*</label>
+                    <input type="month" id="start-date" required/>
+                  </div>
+                  <div class="input-group">
+                    <label for="end-date">End Date</label>
+                    <input type="month" id="end-date"/>
+                    <div style="margin-top: 8px;">
+                      <input type="checkbox" id="current-job"/>
+                      <label for="current-job" style="font-size: 0.875rem; color: var(--text-secondary);">I currently work here</label>
+                    </div>
+                  </div>
+                  <div class="input-group" style="grid-column: 1 / -1;">
+                    <label for="job-description">Description*</label>
+                    <textarea id="job-description" required></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="button is-secondary" style="width: fit-content;" onclick="addExperience()">+ Add Another Position</button>
+          </div>
+
+          <!-- Skills -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Skills</h2>
+            <div class="input-group">
+              <label for="skills-input">Add your skills (e.g., Python, Project Management)*</label>
+              <input type="text" id="skills-input" placeholder="Type a skill and press Enter"/>
+              <div id="skills-container" style="margin-top: 12px;"></div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Education</h2>
+            <div class="grid_2-col">
+              <div class="input-group">
+                <label for="degree">Degree*</label>
+                <input type="text" id="degree" required/>
+              </div>
+              <div class="input-group">
+                <label for="school">School*</label>
+                <input type="text" id="school" required/>
+              </div>
+              <div class="input-group">
+                <label for="field">Field of Study</label>
+                <input type="text" id="field"/>
+              </div>
+              <div class="input-group">
+                <label for="graduation">Graduation Year</label>
+                <input type="number" id="graduation" min="1900" max="2099"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Preferences -->
+          <div style="margin-bottom: 40px;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Job Preferences</h2>
+            <div class="grid_2-col">
+              <div class="input-group">
+                <label for="desired-role">Desired Role*</label>
+                <select id="desired-role" required>
+                  <option value="">Select a role</option>
+                  <option value="software-engineer">Software Engineer</option>
+                  <option value="data-scientist">Data Scientist</option>
+                  <option value="product-manager">Product Manager</option>
+                  <option value="ux-designer">UX Designer</option>
+                  <option value="hr-manager">HR Manager</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="work-type">Preferred Work Type*</label>
+                <select id="work-type" required>
+                  <option value="">Select work type</option>
+                  <option value="remote">Remote</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="on-site">On-site</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label for="salary">Desired Salary Range</label>
+                <select id="salary">
+                  <option value="">Select salary range</option>
+                  <option value="50000-70000">$50k - $70k</option>
+                  <option value="70000-90000">$70k - $90k</option>
+                  <option value="90000-120000">$90k - $120k</option>
+                  <option value="120000+">$120k+</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <div style="text-align: right; display: flex; gap: 12px; justify-content: flex-end;">
+            <button type="button" class="button is-secondary" onclick="generateResume()">Preview Resume</button>
+            <button type="submit" class="button">Generate Perfect Resume</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #f9fafb; padding: 40px 0; text-align: center;">
+    <div class="container">
+      <p style="color: var(--text-secondary);">© 2025 PathAI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple JavaScript for interactive elements
+    let completionPercent = 0;
+
+    function updateCompletionBar() {
+      const form = document.querySelector('form');
+      const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+      let filled = 0;
+      
+      inputs.forEach(input => {
+        if (input.value && input.value.trim() !== '') {
+          filled++;
+        }
+      });
+      
+      completionPercent = Math.round((filled / inputs.length) * 100);
+      document.getElementById('completion-percent').textContent = completionPercent + '%';
+      document.getElementById('completion-bar').style.width = completionPercent + '%';
+    }
+
+    function generateResume() {
+      if (completionPercent < 60) {
+        alert('Please complete at least 60% of your profile before generating your resume.');
+        return;
+      }
+
+      // Simulate resume generation
+      alert('🎉 Your AI-powered resume has been generated!\n\n✓ ATS-optimized\n✓ Professional formatting\n✓ Keyword enhanced\n✓ Ready to download\n\nDownload now to apply to jobs!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Avatar upload preview
+      const avatarUpload = document.getElementById('avatar-upload');
+      const avatarPreview = document.getElementById('avatar-preview');
+
+      avatarUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            avatarPreview.src = event.target.result;
+            updateCompletionBar();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Resume upload
+      const resumeUpload = document.getElementById('resume-upload');
+      resumeUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          // Simulate AI parsing
+          document.getElementById('upload-status').style.display = 'block';
+          
+          // Simulate parsing delay
+          setTimeout(() => {
+            // Mock data - in real scenario, would call backend API
+            document.getElementById('first-name').value = 'John';
+            document.getElementById('last-name').value = 'Doe';
+            document.getElementById('email').value = 'john.doe@example.com';
+            document.getElementById('phone').value = '+1 (555) 123-4567';
+            document.getElementById('location').value = 'San Francisco, CA';
+            document.getElementById('linkedin').value = 'https://linkedin.com/in/johndoe';
+            document.getElementById('summary').value = 'Experienced Software Engineer with 5+ years of expertise in full-stack development, cloud technologies, and leading high-performing teams. Passionate about building scalable solutions.';
+            document.getElementById('job-title').value = 'Senior Software Engineer';
+            document.getElementById('company').value = 'Tech Corp';
+            document.getElementById('start-date').value = '2022-01';
+            document.getElementById('job-description').value = 'Led development of microservices architecture, managed team of 4 engineers, improved system performance by 40%.';
+            document.getElementById('degree').value = 'B.S. Computer Science';
+            document.getElementById('school').value = 'University of California';
+            document.getElementById('field').value = 'Computer Science';
+            document.getElementById('graduation').value = '2018';
+
+            // Add skills
+            const skills = ['JavaScript', 'React', 'Node.js', 'Python', 'AWS', 'Docker'];
+            const skillsContainer = document.getElementById('skills-container');
+            skillsContainer.innerHTML = '';
+            skills.forEach(skill => {
+              const skillTag = document.createElement('span');
+              skillTag.className = 'skill-tag';
+              skillTag.innerHTML = `
+                ${skill}
+                <span style="margin-left: 6px; cursor: pointer;" onclick="this.parentElement.remove()">×</span>
+              `;
+              skillsContainer.appendChild(skillTag);
+            });
+
+            updateCompletionBar();
+            document.getElementById('upload-status').innerHTML = '<p style="margin: 0; color: #10b981;">✓ Resume parsed successfully! All fields populated. Review and click "Generate Perfect Resume"</p>';
+          }, 1500);
+        }
+      });
+
+      // Skills input
+      const skillsInput = document.getElementById('skills-input');
+      const skillsContainer = document.getElementById('skills-container');
+
+      skillsInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && skillsInput.value.trim() !== '') {
+          e.preventDefault();
+          const skill = skillsInput.value.trim();
+          const skillTag = document.createElement('span');
+          skillTag.className = 'skill-tag';
+          skillTag.innerHTML = `
+            ${skill}
+            <span style="margin-left: 6px; cursor: pointer;" onclick="this.parentElement.remove(); updateCompletionBar();">×</span>
+          `;
+          skillsContainer.appendChild(skillTag);
+          skillsInput.value = '';
+          updateCompletionBar();
+        }
+      });
+
+      // Add experience
+      window.addExperience = function() {
+        const container = document.getElementById('experience-container');
+        const newExperience = document.createElement('div');
+        newExperience.className = 'experience-item';
+        newExperience.style.marginBottom = '20px';
+        newExperience.style.paddingBottom = '20px';
+        newExperience.style.borderBottom = '1px solid var(--border-color)';
+        newExperience.innerHTML = `
+          <div class="grid_2-col">
+            <div class="input-group">
+              <label for="job-title">Job Title*</label>
+              <input type="text" required/>
+            </div>
+            <div class="input-group">
+              <label for="company">Company*</label>
+              <input type="text" required/>
+            </div>
+            <div class="input-group">
+              <label for="start-date">Start Date*</label>
+              <input type="month" required/>
+            </div>
+            <div class="input-group">
+              <label for="end-date">End Date</label>
+              <input type="month"/>
+              <div style="margin-top: 8px;">
+                <input type="checkbox" id="current-job"/>
+                <label for="current-job" style="font-size: 0.875rem; color: var(--text-secondary);">I currently work here</label>
+              </div>
+            </div>
+            <div class="input-group" style="grid-column: 1 / -1;">
+              <label for="job-description">Description*</label>
+              <textarea required></textarea>
+            </div>
+          </div>
+          <button type="button" class="button is-secondary" style="width: fit-content; margin-top: 12px;" onclick="this.parentElement.remove(); updateCompletionBar();">Remove Position</button>
+        `;
+        container.appendChild(newExperience);
+      };
+
+      // Current job checkbox
+      document.addEventListener('change', function(e) {
+        if (e.target.id === 'current-job') {
+          const endDateInput = e.target.parentElement.querySelector('input[type="month"]');
+          if (endDateInput) {
+            if (e.target.checked) {
+              endDateInput.disabled = true;
+              endDateInput.value = '';
+            } else {
+              endDateInput.disabled = false;
+            }
+          }
+        }
+      });
+
+      // Track form changes
+      document.querySelectorAll('input, select, textarea').forEach(element => {
+        element.addEventListener('change', updateCompletionBar);
+        element.addEventListener('input', updateCompletionBar);
+      });
+
+      // Form submission
+      document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        generateResume();
+      });
+    });
+  </script>
+</body>
+</html>

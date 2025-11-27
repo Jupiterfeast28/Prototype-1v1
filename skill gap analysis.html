@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html data-wf-domain="pathai-e862ac.webflow.io" data-wf-page="skill-gap-analysis" data-wf-site="69260652d34fb63c072e10f8">
+<head>
+  <meta charset="utf-8"/>
+  <title>Skill Gap Analysis | PathAI</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Webflow" name="generator"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    WebFont.load({ google: { families: ["Inter:regular"] } });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --text-secondary: #6b7280;
+      --bg-color: #ffffff;
+      --card-bg: #ffffff;
+      --border-color: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --info-color: #3b82f6;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .heading_h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .subheading {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 24px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .button.is-secondary {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px solid var(--primary-color);
+    }
+
+    .button.is-danger {
+      background-color: var(--danger-color);
+      border: 1px solid var(--danger-color);
+    }
+
+    .button.is-danger:hover {
+      background-color: #dc2626;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .grid_2-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .flex_vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .input-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .nav {
+      background: white;
+      padding: 16px 0;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav_logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+
+    .nav_logo-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 12px;
+    }
+
+    .nav_menu {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+
+    .nav_link {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: var(--gray-100);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    .skill-missing {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger-color);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .skill-match {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success-color);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .skill-partial {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning-color);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .progress-container {
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--gray-200);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--success-color);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 300px;
+      margin: 30px 0;
+    }
+
+    .learning-path {
+      background: var(--gray-100);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .learning-path-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .learning-path-title {
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .learning-path-duration {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .learning-path-content {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .grid_2-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav">
+    <div class="container nav_container">
+      <a href="Landing page.html" class="nav_logo">
+        <div class="nav_logo-icon">
+          <svg width="100%" height="100%" viewBox="0 0 33 33" preserveAspectRatio="xMidYMid meet">
+            <path d="M28,0H5C2.24,0,0,2.24,0,5v23c0,2.76,2.24,5,5,5h23c2.76,0,5-2.24,5-5V5c0-2.76-2.24-5-5-5ZM29,17c-6.63,0-12,5.37-12,12h-1c0-6.63-5.37-12-12-12v-1c6.63,0,12-5.37,12-12h1c0,6.63,5.37,12,12,12v1Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <div>PathAI</div>
+      </a>
+      <nav class="nav_menu">
+        <a href="Landing page.html#solutions" class="nav_link">Solutions</a>
+        <a href="about.html" class="nav_link">About</a>
+        <a href="blog.html" class="nav_link">Blog</a>
+        <a href="help-center.html" class="nav_link">Support</a>
+      </nav>
+      <a href="signup.html" class="button">Sign up</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <h1 class="heading_h1">Skill Gap Analysis</h1>
+      <p class="subheading">Compare your skills with job requirements to identify areas for improvement. Get personalized learning recommendations to bridge the gaps.</p>
+    </div>
+  </section>
+
+  <!-- Job Selection -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Select a Job Role</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 24px;">Choose a job role to compare your skills against.</p>
+
+        <div class="grid_2-col">
+          <div class="input-group">
+            <label for="jobRole">Job Role</label>
+            <select id="jobRole" onchange="updateSkillAnalysis()">
+              <option value="">Select a job role</option>
+              <option value="frontend-developer">Frontend Developer</option>
+              <option value="backend-developer">Backend Developer</option>
+              <option value="data-scientist">Data Scientist</option>
+              <option value="product-manager">Product Manager</option>
+              <option value="ux-designer">UX Designer</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="experienceLevel">Experience Level</label>
+            <select id="experienceLevel" onchange="updateSkillAnalysis()">
+              <option value="">Select experience level</option>
+              <option value="entry">Entry Level (0-2 years)</option>
+              <option value="mid">Mid Level (2-5 years)</option>
+              <option value="senior">Senior Level (5+ years)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 12px;">Your Skills</h3>
+          <p style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 16px;">Add your skills to compare with the job requirements.</p>
+          <div class="input-group">
+            <input type="text" id="skillInput" placeholder="Add a skill (e.g., JavaScript, Python)" onkeydown="addSkill(event)"/>
+            <div id="yourSkills" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; text-align: right;">
+          <button class="button" onclick="updateSkillAnalysis()">Analyze Skills</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skill Analysis Results -->
+  <section class="section">
+    <div class="container">
+      <div class="card">
+        <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Skill Analysis Results</h2>
+
+        <div id="analysisResults" style="display: none;">
+          <div class="grid_2-col">
+            <div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Job Requirements</h3>
+              <div id="jobRequirements" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;"></div>
+
+              <div class="progress-container">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                  <span style="font-size: 0.875rem; color: var(--text-secondary);">Skill Match</span>
+                  <span id="matchPercentage" style="font-size: 0.875rem; font-weight: 600;">0%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" id="matchProgress" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Your Skills</h3>
+              <div id="yourSkillsDisplay" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;"></div>
+
+              <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Skill Gap</h3>
+              <div id="skillGap" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;"></div>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="skillChart"></canvas>
+          </div>
+
+          <div id="learningRecommendations">
+            <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Learning Recommendations</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Based on your skill gaps, here are some courses to help you improve:</p>
+
+            <div id="recommendationsContainer">
+              <!-- Recommendations will be added here -->
+            </div>
+          </div>
+        </div>
+
+        <div id="noAnalysis" style="text-align: center; padding: 40px 0; color: var(--text-secondary);">
+          <p>Select a job role and add your skills to see your analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #f9fafb; padding: 40px 0; text-align: center;">
+    <div class="container">
+      <p style="color: var(--text-secondary);">© 2025 PathAI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Sample job role data
+    const jobRoles = {
+      'frontend-developer': {
+        entry: {
+          required: ['HTML', 'CSS', 'JavaScript', 'Git', 'Responsive Design'],
+          recommended: ['React', 'TypeScript', 'Bootstrap', 'SASS', 'Webpack'],
+          description: 'Entry-level frontend developers build user interfaces using HTML, CSS, and JavaScript.'
+        },
+        mid: {
+          required: ['HTML', 'CSS', 'JavaScript', 'React', 'TypeScript', 'Git', 'Responsive Design'],
+          recommended: ['Redux', 'Next.js', 'Testing (Jest)', 'GraphQL', 'Performance Optimization'],
+          description: 'Mid-level frontend developers build complex interfaces with modern frameworks like React.'
+        },
+        senior: {
+          required: ['HTML', 'CSS', 'JavaScript', 'React', 'TypeScript', 'Git', 'Responsive Design', 'State Management', 'Testing'],
+          recommended: ['Next.js', 'GraphQL', 'Performance Optimization', 'CI/CD', 'Mentoring'],
+          description: 'Senior frontend developers architect and implement complex frontend systems.'
+        }
+      },
+      'backend-developer': {
+        entry: {
+          required: ['Python', 'JavaScript', 'SQL', 'Git', 'REST APIs'],
+          recommended: ['Node.js', 'Django', 'Flask', 'NoSQL', 'Docker'],
+          description: 'Entry-level backend developers build server-side logic and APIs.'
+        },
+        mid: {
+          required: ['Python', 'JavaScript', 'SQL', 'Git', 'REST APIs', 'Node.js', 'Authentication'],
+          recommended: ['Docker', 'Kubernetes', 'Microservices', 'Caching', 'Message Queues'],
+          description: 'Mid-level backend developers design and implement scalable backend systems.'
+        },
+        senior: {
+          required: ['Python', 'JavaScript', 'SQL', 'Git', 'REST APIs', 'Node.js', 'Authentication', 'Docker', 'Microservices'],
+          recommended: ['Kubernetes', 'Architecture Design', 'Performance Optimization', 'Security', 'Mentoring'],
+          description: 'Senior backend developers architect complex backend systems and ensure scalability.'
+        }
+      },
+      'data-scientist': {
+        entry: {
+          required: ['Python', 'SQL', 'Statistics', 'Pandas', 'Data Visualization'],
+          recommended: ['Machine Learning', 'NumPy', 'Jupyter', 'Excel', 'R'],
+          description: 'Entry-level data scientists analyze data and create visualizations.'
+        },
+        mid: {
+          required: ['Python', 'SQL', 'Statistics', 'Pandas', 'Data Visualization', 'Machine Learning', 'NumPy'],
+          recommended: ['Deep Learning', 'Big Data', 'Cloud Platforms', 'A/B Testing', 'Experimental Design'],
+          description: 'Mid-level data scientists build predictive models and analyze complex datasets.'
+        },
+        senior: {
+          required: ['Python', 'SQL', 'Statistics', 'Pandas', 'Data Visualization', 'Machine Learning', 'NumPy', 'Big Data', 'Cloud Platforms'],
+          recommended: ['Deep Learning', 'MLOps', 'Advanced Statistics', 'Leadership', 'Mentoring'],
+          description: 'Senior data scientists lead data initiatives and build advanced analytical systems.'
+        }
+      },
+      'product-manager': {
+        entry: {
+          required: ['Agile', 'User Stories', 'Market Research', 'Communication', 'Prioritization'],
+          recommended: ['Roadmapping', 'Analytics', 'Wireframing', 'Stakeholder Management', 'SQL'],
+          description: 'Entry-level product managers assist in defining product requirements and prioritizing features.'
+        },
+        mid: {
+          required: ['Agile', 'User Stories', 'Market Research', 'Communication', 'Prioritization', 'Roadmapping', 'Analytics'],
+          recommended: ['Stakeholder Management', 'SQL', 'UX Principles', 'A/B Testing', 'Product Strategy'],
+          description: 'Mid-level product managers own product areas and drive feature development.'
+        },
+        senior: {
+          required: ['Agile', 'User Stories', 'Market Research', 'Communication', 'Prioritization', 'Roadmapping', 'Analytics', 'Stakeholder Management', 'Product Strategy'],
+          recommended: ['Leadership', 'Mentoring', 'Business Strategy', 'Data-Driven Decision Making', 'Cross-functional Collaboration'],
+          description: 'Senior product managers define product vision and strategy, leading cross-functional teams.'
+        }
+      },
+      'ux-designer': {
+        entry: {
+          required: ['User Research', 'Wireframing', 'Prototyping', 'Usability Testing', 'Figma/Sketch'],
+          recommended: ['Visual Design', 'Interaction Design', 'Accessibility', 'Design Systems', 'HTML/CSS Basics'],
+          description: 'Entry-level UX designers create wireframes and prototypes based on user research.'
+        },
+        mid: {
+          required: ['User Research', 'Wireframing', 'Prototyping', 'Usability Testing', 'Figma/Sketch', 'Visual Design', 'Interaction Design'],
+          recommended: ['Accessibility', 'Design Systems', 'HTML/CSS', 'JavaScript Basics', 'User Journey Mapping'],
+          description: 'Mid-level UX designers create end-to-end user experiences and conduct user testing.'
+        },
+        senior: {
+          required: ['User Research', 'Wireframing', 'Prototyping', 'Usability Testing', 'Figma/Sketch', 'Visual Design', 'Interaction Design', 'Design Systems', 'Accessibility'],
+          recommended: ['UX Strategy', 'Leadership', 'Mentoring', 'Cross-functional Collaboration', 'Data-Driven Design'],
+          description: 'Senior UX designers lead design initiatives and define UX strategy.'
+        }
+      }
+    };
+
+    // Sample learning recommendations
+    const learningRecommendations = {
+      'HTML': [
+        { title: 'HTML & CSS Crash Course', provider: 'freeCodeCamp', duration: '4 hours', url: 'https://example.com/html-course' },
+        { title: 'HTML5 Fundamentals', provider: 'Udemy', duration: '6 hours', url: 'https://example.com/html5-fundamentals' }
+      ],
+      'CSS': [
+        { title: 'CSS Flexbox & Grid', provider: 'Scrimba', duration: '3 hours', url: 'https://example.com/css-layout' },
+        { title: 'Advanced CSS', provider: 'Frontend Masters', duration: '10 hours', url: 'https://example.com/advanced-css' }
+      ],
+      'JavaScript': [
+        { title: 'JavaScript Basics', provider: 'Codecademy', duration: '10 hours', url: 'https://example.com/js-basics' },
+        { title: 'Modern JavaScript', provider: 'The Odin Project', duration: '20 hours', url: 'https://example.com/modern-js' }
+      ],
+      'React': [
+        { title: 'React for Beginners', provider: 'Scrimba', duration: '8 hours', url: 'https://example.com/react-basics' },
+        { title: 'Advanced React', provider: 'Frontend Masters', duration: '15 hours', url: 'https://example.com/advanced-react' }
+      ],
+      'Python': [
+        { title: 'Python for Beginners', provider: 'Coursera', duration: '12 hours', url: 'https://example.com/python-basics' },
+        { title: 'Python for Data Science', provider: 'DataCamp', duration: '20 hours', url: 'https://example.com/python-data-science' }
+      ],
+      'SQL': [
+        { title: 'SQL Basics', provider: 'Khan Academy', duration: '5 hours', url: 'https://example.com/sql-basics' },
+        { title: 'Advanced SQL', provider: 'Mode Analytics', duration: '10 hours', url: 'https://example.com/advanced-sql' }
+      ],
+      'Machine Learning': [
+        { title: 'Machine Learning Crash Course', provider: 'Google', duration: '15 hours', url: 'https://example.com/ml-crash-course' },
+        { title: 'Practical Machine Learning', provider: 'fast.ai', duration: '20 hours', url: 'https://example.com/practical-ml' }
+      ],
+      'Agile': [
+        { title: 'Agile Fundamentals', provider: 'LinkedIn Learning', duration: '3 hours', url: 'https://example.com/agile-fundamentals' },
+        { title: 'Scrum Master Certification', provider: 'Scrum Alliance', duration: '16 hours', url: 'https://example.com/scrum-master' }
+      ],
+      'User Research': [
+        { title: 'User Research Methods', provider: 'Interaction Design Foundation', duration: '8 hours', url: 'https://example.com/user-research' },
+        { title: 'Conducting User Interviews', provider: 'NN/g', duration: '4 hours', url: 'https://example.com/user-interviews' }
+      ]
+    };
+
+    // Your skills array
+    let yourSkills = [];
+
+    // Add skill function
+    window.addSkill = function(event) {
+      if (event.key === 'Enter' || event.key === ',') {
+        event.preventDefault();
+        const input = document.getElementById('skillInput');
+        const skill = input.value.trim();
+
+        if (skill && !yourSkills.includes(skill)) {
+          yourSkills.push(skill);
+          updateYourSkillsDisplay();
+          input.value = '';
+        }
+      }
+    };
+
+    // Update your skills display
+    function updateYourSkillsDisplay() {
+      const container = document.getElementById('yourSkills');
+      container.innerHTML = '';
+
+      yourSkills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'skill-tag';
+        skillElement.textContent = skill;
+        skillElement.onclick = function() {
+          yourSkills = yourSkills.filter(s => s !== skill);
+          updateYourSkillsDisplay();
+          if (document.getElementById('jobRole').value) {
+            updateSkillAnalysis();
+          }
+        };
+        container.appendChild(skillElement);
+      });
+    }
+
+    // Update skill analysis
+    window.updateSkillAnalysis = function() {
+      const jobRole = document.getElementById('jobRole').value;
+      const experienceLevel = document.getElementById('experienceLevel').value;
+
+      if (!jobRole || !experienceLevel || yourSkills.length === 0) {
+        document.getElementById('analysisResults').style.display = 'none';
+        document.getElementById('noAnalysis').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('analysisResults').style.display = 'block';
+      document.getElementById('noAnalysis').style.display = 'none';
+
+      // Get job requirements
+      const requirements = jobRoles[jobRole][experienceLevel];
+      const allRequiredSkills = [...requirements.required, ...requirements.recommended];
+
+      // Display job requirements
+      const jobRequirementsContainer = document.getElementById('jobRequirements');
+      jobRequirementsContainer.innerHTML = '';
+
+      allRequiredSkills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'skill-tag';
+        skillElement.textContent = skill;
+        jobRequirementsContainer.appendChild(skillElement);
+      });
+
+      // Display your skills
+      const yourSkillsDisplay = document.getElementById('yourSkillsDisplay');
+      yourSkillsDisplay.innerHTML = '';
+
+      yourSkills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'skill-tag';
+        skillElement.textContent = skill;
+        yourSkillsDisplay.appendChild(skillElement);
+      });
+
+      // Calculate skill match
+      const matchedSkills = yourSkills.filter(skill => allRequiredSkills.includes(skill));
+      const matchPercentage = Math.round((matchedSkills.length / allRequiredSkills.length) * 100);
+
+      document.getElementById('matchPercentage').textContent = `${matchPercentage}%`;
+      document.getElementById('matchProgress').style.width = `${matchPercentage}%`;
+
+      // Identify skill gaps
+      const skillGapContainer = document.getElementById('skillGap');
+      skillGapContainer.innerHTML = '';
+
+      const missingSkills = allRequiredSkills.filter(skill => !yourSkills.includes(skill));
+
+      missingSkills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'skill-tag skill-missing';
+        skillElement.textContent = skill;
+        skillGapContainer.appendChild(skillElement);
+      });
+
+      // Update chart
+      updateSkillChart(matchedSkills.length, missingSkills.length);
+
+      // Update learning recommendations
+      updateLearningRecommendations(missingSkills);
+    };
+
+    // Update skill chart
+    function updateSkillChart(matchedCount, missingCount) {
+      const ctx = document.getElementById('skillChart').getContext('2d');
+
+      // Destroy previous chart if it exists
+      if (window.skillChart) {
+        window.skillChart.destroy();
+      }
+
+      window.skillChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Skills You Have', 'Skills to Learn'],
+          datasets: [{
+            data: [matchedCount, missingCount],
+            backgroundColor: [
+              'rgba(16, 185, 129, 0.8)',
+              'rgba(239, 68, 68, 0.8)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.raw || 0;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = Math.round((value / total) * 100);
+                  return `${label}: ${value} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Update learning recommendations
+    function updateLearningRecommendations(missingSkills) {
+      const container = document.getElementById('recommendationsContainer');
+      container.innerHTML = '';
+
+      // Remove duplicates
+      const uniqueSkills = [...new Set(missingSkills)];
+
+      uniqueSkills.forEach(skill => {
+        if (learningRecommendations[skill]) {
+          const skillHeader = document.createElement('div');
+          skillHeader.style.marginBottom = '16px';
+          skillHeader.innerHTML = `
+            <h4 style="font-size: 1rem; margin: 0 0 8px 0;">${skill}</h4>
+          `;
+          container.appendChild(skillHeader);
+
+          learningRecommendations[skill].forEach(course => {
+            const courseElement = document.createElement('div');
+            courseElement.className = 'learning-path';
+            courseElement.innerHTML = `
+              <div class="learning-path-header">
+                <h5 class="learning-path-title">${course.title}</h5>
+                <span class="learning-path-duration">${course.duration} • ${course.provider}</span>
+              </div>
+              <div class="learning-path-content">
+                <p>${course.title} course by ${course.provider}. ${course.duration} of content to master ${skill}.</p>
+              </div>
+              <div style="margin-top: 12px; text-align: right;">
+                <a href="${course.url}" target="_blank" class="button is-secondary" style="font-size: 0.875rem; padding: 6px 12px;">View Course</a>
+              </div>
+            `;
+            container.appendChild(courseElement);
+          });
+        }
+      });
+
+      if (container.children.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-secondary);">No learning recommendations found for your skill gaps.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

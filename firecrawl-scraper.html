@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firecrawl Job Scraper - PathAI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2::before {
+            content: '🔗';
+            font-size: 24px;
+        }
+
+        .card:nth-child(2) h2::before {
+            content: '🕷️';
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .secondary-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .secondary-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .results-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .results-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .result-item p {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .result-item .meta {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #999;
+            flex-wrap: wrap;
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .status-message.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+            display: block;
+        }
+
+        .loading {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .job-badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Firecrawl Job Scraper</h1>
+            <p>Automatically scrape job listings from websites and import them into PathAI</p>
+            <div class="nav">
+                <a href="/">← Back to Home</a>
+                <a href="/Job search.html">Job Search</a>
+                <a href="/post a job.html">Post a Job</a>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Scrape Single Page -->
+            <div class="card">
+                <h2>Scrape Single Job Page</h2>
+                <form id="scrapeSingleForm">
+                    <div class="form-group">
+                        <label for="singleUrl">Job Page URL</label>
+                        <input 
+                            type="url" 
+                            id="singleUrl" 
+                            placeholder="https://example.com/job-listing"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="singleEmployerId">Employer ID (Optional)</label>
+                        <input 
+                            type="number" 
+                            id="singleEmployerId" 
+                            placeholder="1"
+                            min="1"
+                        >
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="singleAutoAdd">
+                        <label for="singleAutoAdd" style="margin-bottom: 0;">
+                            Auto-import jobs to database
+                        </label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit">🔍 Scrape Page</button>
+                        <button type="reset" class="secondary-btn">Clear</button>
+                    </div>
+                </form>
+
+                <div id="singleMessage" class="status-message"></div>
+                <div id="singleResults"></div>
+            </div>
+
+            <!-- Crawl Multiple Pages -->
+            <div class="card">
+                <h2>Crawl Job Site</h2>
+                <form id="crawlSiteForm">
+                    <div class="form-group">
+                        <label for="crawlUrl">Site Base URL</label>
+                        <input 
+                            type="url" 
+                            id="crawlUrl" 
+                            placeholder="https://jobs.example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="crawlLimit">Max Pages to Crawl</label>
+                        <input 
+                            type="number" 
+                            id="crawlLimit" 
+                            value="5"
+                            min="1"
+                            max="50"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="crawlEmployerId">Employer ID (Optional)</label>
+                        <input 
+                            type="number" 
+                            id="crawlEmployerId" 
+                            placeholder="1"
+                            min="1"
+                        >
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="crawlAutoAdd">
+                        <label for="crawlAutoAdd" style="margin-bottom: 0;">
+                            Auto-import jobs to database
+                        </label>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit">🕷️ Start Crawl</button>
+                        <button type="reset" class="secondary-btn">Clear</button>
+                    </div>
+                </form>
+
+                <div id="crawlMessage" class="status-message"></div>
+                <div id="crawlResults"></div>
+            </div>
+        </div>
+
+        <!-- Results Display -->
+        <div id="resultsContainer" class="results-section hidden">
+            <h3>📊 Scraped Jobs</h3>
+            <div id="jobsList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Utility function to show messages
+        function showMessage(elementId, text, type = 'info') {
+            const elem = document.getElementById(elementId);
+            elem.className = `status-message ${type}`;
+            elem.textContent = text;
+        }
+
+        function showLoading(elementId, show = true) {
+            const elem = document.getElementById(elementId);
+            if (show) {
+                elem.innerHTML = '<span class="loading">⏳</span> Processing...';
+            } else {
+                elem.innerHTML = '';
+            }
+        }
+
+        // Display scraped jobs
+        function displayJobs(jobs, scrapedAt) {
+            const container = document.getElementById('resultsContainer');
+            const jobsList = document.getElementById('jobsList');
+            
+            if (jobs.length === 0) {
+                jobsList.innerHTML = '<p>No jobs found in the scraped content.</p>';
+            } else {
+                jobsList.innerHTML = jobs.map((job, i) => `
+                    <div class="result-item">
+                        <h4>${i + 1}. ${job.title || 'Job Title'}</h4>
+                        <p><strong>Location:</strong> ${job.location || 'N/A'}</p>
+                        <p><strong>Description:</strong> ${(job.description || 'N/A').substring(0, 200)}...</p>
+                        ${job.salary_range ? `<p><strong>Salary:</strong> ${job.salary_range}</p>` : ''}
+                        <div class="meta">
+                            <span>${job.remote_type || 'N/A'}</span>
+                            ${job.source_url ? `<span><a href="${job.source_url}" target="_blank">View Source</a></span>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            container.classList.remove('hidden');
+        }
+
+        // Scrape single page
+        document.getElementById('scrapeSingleForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const url = document.getElementById('singleUrl').value;
+            const employerId = document.getElementById('singleEmployerId').value;
+            const autoAdd = document.getElementById('singleAutoAdd').checked;
+
+            showLoading('singleMessage');
+
+            try {
+                const response = await fetch('/api/scrape-job', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        url,
+                        employer_id: employerId || undefined,
+                        auto_add: autoAdd
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('singleMessage', 
+                        `✅ Found ${data.job_count} job(s) in the page!`, 
+                        'success'
+                    );
+                    displayJobs(data.jobs, data.scraped_at);
+                    
+                    if (autoAdd) {
+                        showMessage('singleMessage', 
+                            `✅ Found ${data.job_count} job(s) - Auto-imported!`, 
+                            'success'
+                        );
+                    }
+                } else {
+                    showMessage('singleMessage', 
+                        `❌ Error: ${data.error}`, 
+                        'error'
+                    );
+                }
+            } catch (error) {
+                showMessage('singleMessage', 
+                    `❌ Request failed: ${error.message}`, 
+                    'error'
+                );
+            }
+        });
+
+        // Crawl site
+        document.getElementById('crawlSiteForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const url = document.getElementById('crawlUrl').value;
+            const limit = document.getElementById('crawlLimit').value;
+            const employerId = document.getElementById('crawlEmployerId').value;
+            const autoAdd = document.getElementById('crawlAutoAdd').checked;
+
+            showLoading('crawlMessage');
+
+            try {
+                const response = await fetch('/api/crawl-site', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        url,
+                        limit: parseInt(limit),
+                        employer_id: employerId || undefined,
+                        auto_add: autoAdd
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    if (data.jobId) {
+                        // Async job - show poll status
+                        showMessage('crawlMessage', 
+                            `⏳ Crawl job started (ID: ${data.jobId}). Checking status...`, 
+                            'info'
+                        );
+                        
+                        // Poll for results
+                        pollCrawlStatus(data.jobId, employerId, autoAdd);
+                    } else if (data.jobs) {
+                        showMessage('crawlMessage', 
+                            `✅ Found ${data.jobs.length} job(s) across ${data.pages_crawled} page(s)!`, 
+                            'success'
+                        );
+                        displayJobs(data.jobs, data.crawled_at);
+                    }
+                } else {
+                    showMessage('crawlMessage', 
+                        `❌ Error: ${data.error}`, 
+                        'error'
+                    );
+                }
+            } catch (error) {
+                showMessage('crawlMessage', 
+                    `❌ Request failed: ${error.message}`, 
+                    'error'
+                );
+            }
+        });
+
+        // Poll crawl status
+        let pollCount = 0;
+        const MAX_POLLS = 60; // 5 minutes max
+
+        function pollCrawlStatus(jobId, employerId, autoAdd) {
+            if (pollCount >= MAX_POLLS) {
+                showMessage('crawlMessage', 
+                    '⚠️ Crawl took too long. Check back later.', 
+                    'error'
+                );
+                return;
+            }
+
+            setTimeout(async () => {
+                pollCount++;
+                try {
+                    const autoAddParam = autoAdd ? '&auto_add=true' : '';
+                    const employerParam = employerId ? `&employer_id=${employerId}` : '';
+                    
+                    const response = await fetch(`/api/crawl-status/${jobId}?${autoAddParam}${employerParam}`);
+                    const data = await response.json();
+
+                    if (data.status === 'completed' && data.data) {
+                        // Extract jobs from all pages
+                        let allJobs = [];
+                        data.data.forEach(page => {
+                            if (page.markdown) {
+                                // Parse jobs from markdown
+                                // This would use the same parser on backend
+                            }
+                        });
+
+                        showMessage('crawlMessage', 
+                            `✅ Crawl complete! Processing results...`, 
+                            'success'
+                        );
+                        
+                        if (autoAdd && data.jobs_added) {
+                            showMessage('crawlMessage', 
+                                `✅ Successfully imported ${data.jobs_added} job(s) to database!`, 
+                                'success'
+                            );
+                        }
+                    } else if (data.status === 'processing' || data.status === 'scraping') {
+                        showMessage('crawlMessage', 
+                            `⏳ Crawling in progress... (${pollCount}/60)`, 
+                            'info'
+                        );
+                        pollCrawlStatus(jobId, employerId, autoAdd);
+                    } else {
+                        showMessage('crawlMessage', 
+                            `❌ Error: ${data.error || 'Unknown error'}`, 
+                            'error'
+                        );
+                    }
+                } catch (error) {
+                    showMessage('crawlMessage', 
+                        `❌ Poll failed: ${error.message}`, 
+                        'error'
+                    );
+                }
+            }, 5000); // Poll every 5 seconds
+        }
+    </script>
+</body>
+</html>
